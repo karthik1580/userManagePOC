@@ -1,0 +1,20 @@
+<div class="text-center mt-5">
+<form class="border border-light p-5 col-md-5 offset-md-4"
+  #signInUserForm="ngForm" (ngSubmit)="onSubmit(signInUserForm)">
+
+        <p class="h4 mb-4">Sign in</p>
+
+        <input type="email" id="input-email" class="form-control mb-4" 
+        required  placeholder="E-mail"
+        >
+        <!-- #email="ngModel" [(ngModel)]="SelectedUser" -->
+
+        <!-- <input type="password" id="input-password" class="form-control mb-4" 
+            placeholder="Password"
+            > -->
+
+        
+        <button class="btn btn-info btn-block my-4" type="submit ">Login in</button>
+        <button class="btn btn-info btn-block my-4" type="button">Sign up</button>
+    </form>
+</div>

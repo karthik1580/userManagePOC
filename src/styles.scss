@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+$lightGray: #e0e0e0;
+$red: #ff0000;
+
+.border-light{
+    border: 1px solid $lightGray !important;
+}
+
+.has-error{
+    .form-control{
+        border-color: $red !important;
+    }
+    .errorMsg{
+        color: $red !important;
+        text-align: left!important;
+        display: flex;
+        margin-top: -24px;
+        position: absolute;
+        font-size: 13px; 
+    }
+}

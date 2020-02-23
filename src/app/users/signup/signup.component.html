@@ -1,0 +1,116 @@
+<div class="text-center mt-5">
+    <form class="col-md-10 offset-md-1 border border-light p-5" 
+    [formGroup]="signUpForm" (ngSubmit)="signUpForm.valid && onSubmitSignupForm(signUpForm)">
+        <p class="h4 mb-4">Sign Up</p>
+        <div class="row">
+            <div class="col-md-6" 
+            [ngClass]="{'has-error' : signUpForm.get('firstName').errors && 
+                (signUpForm.get('firstName').touched || signUpForm.get('firstName').dirty)}">
+                <input type="text" id="input-FirstName" class="form-control mb-4" placeholder="First name"
+                    formControlName="firstName" autocomplete="off" required>  
+
+                <!-- <app-error-msg-wrapper [errorMsgObj]="parentModel"></app-error-msg-wrapper> -->
+                <span *ngIf="signUpForm.get('firstName').errors && 
+                    (signUpForm.get('firstName').touched || signUpForm.get('firstName').dirty)">
+
+                    <app-error-msg 
+                        *ngIf="signUpForm.get('firstName').errors.required"
+                        [formErrorMsg]="'First name is required'"></app-error-msg>
+                    <app-error-msg 
+                        *ngIf="signUpForm.get('firstName').errors.minlength || signUpForm.get('firstName').errors.maxlength"
+                        [formErrorMsg]="'First name must be grater then 5 to 10 charactors'"></app-error-msg>
+                </span>
+            
+            </div>
+            <div class="col-md-6"
+            [ngClass]="{'has-error' : signUpForm.get('lastName').errors && 
+                (signUpForm.get('lastName').touched || signUpForm.get('lastName').dirty)}">
+                <input type="text" id="input-LastName" class="form-control mb-4" placeholder="Last name"
+                    formControlName="lastName" autocomplete="off">
+                <span *ngIf="signUpForm.get('lastName').errors && 
+                    (signUpForm.get('lastName').touched || signUpForm.get('lastName').dirty)">
+                    <app-error-msg 
+                        *ngIf="signUpForm.get('lastName').errors.required"
+                        [formErrorMsg]="'Last name is required'"></app-error-msg>
+                    <app-error-msg 
+                        *ngIf="signUpForm.get('lastName').errors.minlength || signUpForm.get('lastName').errors.maxlength"
+                        [formErrorMsg]="'Last name must be grater then 5 to 10 charactors'"></app-error-msg>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6" 
+            [ngClass]="{'has-error': signUpForm.get('enterpriseId').errors && 
+                (signUpForm.get('enterpriseId').touched || signUpForm.get('enterpriseId').dirty)}">
+                <input type="text" id="input-enterpriceId" class="form-control mb-4" placeholder="Enterprice Id"
+                    formControlName="enterpriseId" autocomplete="off">
+
+                <span *ngIf="signUpForm.get('enterpriseId').errors && 
+                    (signUpForm.get('enterpriseId').touched || signUpForm.get('enterpriseId').dirty)">
+                    <app-error-msg 
+                        *ngIf="signUpForm.get('enterpriseId').errors.required"
+                        [formErrorMsg]="'Enterprice name is required'"></app-error-msg>
+                    <app-error-msg 
+                        *ngIf="signUpForm.get('enterpriseId').errors.minlength || signUpForm.get('enterpriseId').errors.maxlength"
+                        [formErrorMsg]="'Enterprice must be grater then 5 to 10 charactors'"></app-error-msg>
+                </span>
+                
+            </div>
+            <div class="col-md-6">
+                <select class="browser-default form-control mb-4" 
+                    formControlName="role">
+                    <option *ngFor="let role of roles; let i = index" 
+                        [ngValue]="role"
+                        [attr.selected]="i == 0 ? true : null"
+                        [innerText]="role"></option>
+                  </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6"
+            [ngClass]="{'has-error': signUpForm.get('email').errors && 
+                (signUpForm.get('email').touched || signUpForm.get('email').dirty)}">
+                <input type="email" id="input-email" class="form-control mb-4" placeholder="E-mail"
+                    formControlName="email" autocomplete="off" [pattern]="emailPattern">
+
+                <span *ngIf="signUpForm.get('email').errors && 
+                    (signUpForm.get('email').touched || signUpForm.get('email').dirty)">
+                    <app-error-msg 
+                        *ngIf="signUpForm.get('email').errors.required"
+                        [formErrorMsg]="'Email is required'"></app-error-msg>
+                    <app-error-msg 
+                        *ngIf="signUpForm.get('email').errors.pattern"
+                        [formErrorMsg]="'Email not valid.'"></app-error-msg>
+                </span>
+            </div>
+            <div class="col-md-6"
+            [ngClass]="{'has-error': signUpForm.get('password').errors && 
+                (signUpForm.get('password').touched || signUpForm.get('password').dirty)}">
+                <input type="password" id="input-password" class="form-control mb-4" placeholder="Password"
+                    formControlName="password" autocomplete="off">
+
+                <span *ngIf="signUpForm.get('password').errors && 
+                    (signUpForm.get('password').touched || signUpForm.get('password').dirty)">
+                    <app-error-msg 
+                        *ngIf="signUpForm.get('password').errors.required"
+                        [formErrorMsg]="'password name is required'"></app-error-msg>
+                    <app-error-msg 
+                        *ngIf="signUpForm.get('password').errors.minlength"
+                        [formErrorMsg]="'password must be minimum 5 charactors'"></app-error-msg>
+                </span>
+            </div>
+        </div>
+        
+
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-info col-md-3" type="submit">Sign up</button>
+                <!--[disabled]="signUpForm.invalid"-->
+            </div>
+        </div>
+    </form>
+
+    <app-toster *ngIf="showAlertMessage" [toserMessage]="tosermsg"></app-toster>
+</div>
