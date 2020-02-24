@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Toster } from 'src/app/models/toster.model';
 
 @Component({
@@ -6,22 +6,21 @@ import { Toster } from 'src/app/models/toster.model';
   templateUrl: './toster.component.html',
   styleUrls: ['./toster.component.scss']
 })
-export class TosterComponent implements OnInit, AfterViewInit {
-  @Input() toserMessage: Toster[];
-  toserMsg: any = this.toserMessage[0]; 
+export class TosterComponent implements OnInit {
+  @Input() toserMessage: Toster[] = [];
+  
+  toserMsg: any;
   constructor() { }
 
   ngOnInit() {
     this.getMessgae();
   }
-  getMessgae(){
-    this.toserMsg;
+  getMessgae() {  
+    this.toserMsg = this.toserMessage[0];
+    console.log('this.toserMsg', this.toserMsg);
+  }  
+  closeToser(){
+    
   }
-  ngAfterViewInit(){
-    setTimeout(()=>{
-      this.toserMsg.showToser = false;
-    },1000);
-  }
-  
 
 }
