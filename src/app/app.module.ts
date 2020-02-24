@@ -11,6 +11,7 @@ import { SingInComponent } from './users/sing-in/sing-in.component';
 import { ErrorMsgComponent } from './reUsableComponent/error-msg/error-msg.component';
 import { ErrorMsgWrapperComponent } from './reUsableComponent/error-msg-wrapper/error-msg-wrapper.component';
 import { TosterComponent } from './reUsableComponent/toster/toster.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TosterComponent } from './reUsableComponent/toster/toster.component';
     SingInComponent,
     ErrorMsgComponent,
     ErrorMsgWrapperComponent,
-    TosterComponent
+    TosterComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,

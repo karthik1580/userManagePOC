@@ -18,7 +18,6 @@ export class SignupComponent implements OnInit {
   ];
 
   emailPattern: any = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
-  parentModel: Array <any> = [{ prop1: '1st prop', prop2: '2nd prop' }];
 
   tosermsg: Toster[] = [];
   showAlertMessage: boolean = false;
@@ -40,14 +39,13 @@ export class SignupComponent implements OnInit {
 
   onSubmitSignupForm(form: FormGroup){
     this.userservice.saveUser(form.value).subscribe(
-      (res) => {
-        console.log("I am in submit");
-        
+      (res) => {        
         this.showAlertMessage = true;
         this.tosermsg.push({title : "Success", message : "Successfully user hasbeen created", showToser: this.showAlertMessage });
-        
       },
       (err) => {
+        this.showAlertMessage = true;
+        this.tosermsg.push({title : "Error", message : "Error massage", showToser: this.showAlertMessage });
         console.log("byee", err);
       }
     );

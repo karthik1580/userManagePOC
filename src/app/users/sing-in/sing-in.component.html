@@ -1,20 +1,28 @@
 <div class="text-center mt-5">
 <form class="border border-light p-5 col-md-5 offset-md-4"
-  #signInUserForm="ngForm" (ngSubmit)="onSubmit(signInUserForm)">
+  #signInUserForm="ngForm" (ngSubmit)="signInUserForm.valid && onSigninSubmit(signInUserForm)">
 
         <p class="h4 mb-4">Sign in</p>
+        <div 
+         [ngClass]="{'has-error': signInUserForm.submitted && !email.valid }">
+            <input type="email" id="input-email" class="form-control mb-4" 
+            required  placeholder="E-mail" [(ngModel)]="model.email" autocomplete="off"
+            #email="ngModel" name="email" [pattern]="emailPattern" />
 
-        <input type="email" id="input-email" class="form-control mb-4" 
-        required  placeholder="E-mail"
-        >
-        <!-- #email="ngModel" [(ngModel)]="SelectedUser" -->
+            <app-error-msg *ngIf="signInUserForm.submitted && email.error?.pattern"
+                [formErrorMsg]="'Invalid email'"></app-error-msg>
+        </div>
+        <div [ngClass]="{'has-error': signInUserForm.submitted && !password.valid}">
+            <input type="password" id="inputPassword" class="form-control mb-4" 
+            required placeholder="Password" [(ngModel)]="model.password" autocomplete="off"
+            #password="ngModel" name="password" minlength="4" />
 
-        <!-- <input type="password" id="input-password" class="form-control mb-4" 
-            placeholder="Password"
-            > -->
+            <app-error-msg *ngIf="signInUserForm.submitted && password.error?.minlength"
+               [formErrorMsg]="'password should be more then 4 chanractors'"></app-error-msg>
+        </div>
 
         
-        <button class="btn btn-info btn-block my-4" type="submit ">Login in</button>
-        <button class="btn btn-info btn-block my-4" type="button">Sign up</button>
+        <button class="btn btn-info btn-block my-4" type="submit" [disabled]="signInUserForm.invalid">Login in</button>
+        <button class="btn btn-info btn-block my-4" type="button" routerLink="/signup">Sign up</button>
     </form>
 </div>

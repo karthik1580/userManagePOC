@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { UsersComponent } from './users/users.component';
 import { SingInComponent } from './users/sing-in/sing-in.component';
 import { SignupComponent } from './users/signup/signup.component';
-import { Z_FULL_FLUSH } from 'zlib';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 
 const routes: Routes = [
@@ -18,7 +18,10 @@ const routes: Routes = [
     ]
   },
   {
-    path: '', redirectTo:'/signup', pathMatch: 'full'
+    path: 'userdetail', component: UserDetailComponent
+  },
+  {
+    path: '', redirectTo:'/signin', pathMatch: 'full'
   }
 ];
 
