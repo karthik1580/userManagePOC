@@ -1,12 +1,12 @@
 <div class="text-center mt-5">
 <form class="border border-light p-5 col-md-5 offset-md-4"
-  #signInUserForm="ngForm" (ngSubmit)="onSigninSubmit(signInUserForm)">
+  #signInUserForm="ngForm" (ngSubmit)="onSubmit(signInUserForm)">
 
         <p class="h4 mb-4">Sign in</p>
         
         <div [ngClass]="{'has-error': email.errors && (email.touched || email.dirty)}">
             <input type="email" id="input-email" class="form-control mb-4" 
-            required placeholder="E-mail" #email="ngModel" ngModel name="email" [(ngModel)]="model.email" autocomplete="off"
+            required placeholder="E-mail" #email="ngModel" ngModel name="email" [(ngModel)]="autnMemberLogin.email" autocomplete="off"
               [pattern]="emailPattern" />
 
             <app-error-msg *ngIf="email.errors && email.touched" [formErrorMsg]="'Email is required'"></app-error-msg>
@@ -16,7 +16,7 @@
         <div [ngClass]="{'has-error': password.errors && (password.touched || password.dirty)}">
             <input type="password" id="inputPassword" class="form-control mb-4" 
             required placeholder="Password" #password="ngModel" minlength="4"
-            ngModel name="password" [(ngModel)]="model.password" autocomplete="off"/>
+            ngModel name="password" [(ngModel)]="autnMemberLogin.password" autocomplete="off"/>
             
             <app-error-msg *ngIf="password.errors && password.touched && !password.errors.minlength" [formErrorMsg]="'Password is required'"></app-error-msg> 
             <app-error-msg *ngIf="password.errors && password.errors.minlength" [formErrorMsg]="'Password should be more then 4 chanractors'"></app-error-msg>              

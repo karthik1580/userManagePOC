@@ -12,6 +12,7 @@ import { ErrorMsgComponent } from './reUsableComponent/error-msg/error-msg.compo
 import { ErrorMsgWrapperComponent } from './reUsableComponent/error-msg-wrapper/error-msg-wrapper.component';
 import { TosterComponent } from './reUsableComponent/toster/toster.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { HeaderComponent } from './common/header/header.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     ErrorMsgComponent,
     ErrorMsgWrapperComponent,
     TosterComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

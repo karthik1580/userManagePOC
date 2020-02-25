@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { Validators, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-sing-in',
@@ -8,16 +8,18 @@ import { Validators } from '@angular/forms';
 })
 export class SingInComponent implements OnInit {
 
-  model = {
-    email: '',
-    password: ''
-  }
-
+  // model = {
+  //   email: '',
+  //   password: ''
+  // }
+  autnMemberLogin = {}
   emailPattern: any = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   
   constructor() { }
 
   ngOnInit() {
   }
-
+  onSubmit(form: NgForm){
+    console.log('Form', form.value)
+  }
 }
