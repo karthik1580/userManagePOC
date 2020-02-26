@@ -21,6 +21,12 @@ $darkGray: #888888;
     }
 }
 
+.userDetailListContainer{column-count: 2;}
+.card-body{ 
+    button{ 
+        margin-left: .5rem;
+    }
+}
 .custom-toast{
     position: absolute;
     border: 1px solid $darkGray;

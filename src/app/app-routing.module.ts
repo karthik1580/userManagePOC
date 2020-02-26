@@ -1,3 +1,4 @@
+import { AuthguardGuard } from './auth/authguard.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UsersComponent } from './users/users.component';
@@ -13,12 +14,19 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'signin', component: UsersComponent, children: [
+    path: 'signin', component: UsersComponent, 
+    children: [
       {path: '', component: SingInComponent}
     ]
   },
   {
-    path: 'userdetail', component: UserDetailComponent
+    path: 'user', component: UserDetailComponent, 
+    canActivate: [AuthguardGuard]
+  },
+  {
+    path: 'userdetail', 
+    component: UserDetailComponent, 
+    canActivate: [AuthguardGuard]
   },
   {
     path: '', redirectTo:'/signup', pathMatch: 'full'
