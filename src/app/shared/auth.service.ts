@@ -6,15 +6,8 @@ import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
-selectedUser: User = {
-  enterpriseId: '',
-    firstName: '',
-    lastName: '',
-    role: '',
-    email: '',
-    password: ''
-}
+export class AuthService {
+
   constructor(private http: HttpClient) { }
 
   saveUser(user: User){
@@ -23,10 +16,5 @@ selectedUser: User = {
 
   loginuser(user: User){
     return this.http.post<any>(environment.apiBaseUrl+'/login', user)
-  }
-
-  loggedIn(){
-    // !! -- double nikate
-    return !!localStorage.getItem('token');
   }
 }

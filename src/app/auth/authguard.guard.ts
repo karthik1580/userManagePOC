@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanActivateChild, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanActivate, Router } from '@angular/router';
+import { UserService } from '../shared/user.service';
 import { Observable } from 'rxjs';
 
 
@@ -7,20 +8,26 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthguardGuard implements CanActivate {
-  constructor(private routes: Router){}
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true; //this.routes.navigate(['/signin']);
+  constructor(private _router: Router, private _authService: UserService) { }
+
+  canActivate(): boolean {
+    if(this._authService.loggedIn()){
+      return true;
+    }else {
+      this._router.navigate(['/signin']);
+      return false;
+    }
   }
-  // canActivateChild(
-  //   next: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-  //   return true;
-  // }
-  // canLoad(
-  //   route: Route,
-  //   segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
-  //   return true;
-  // }
 }
+
+
+/*
+if (this._authService.loggedIn()) {
+      console.log('true')
+      return true
+    } else {
+      console.log('false')            
+      this._router.navigate(['/login'])
+      return false
+    }
+*/

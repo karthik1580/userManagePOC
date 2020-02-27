@@ -1,35 +1,27 @@
 import { AuthguardGuard } from './auth/authguard.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UsersComponent } from './users/users.component';
-import { SingInComponent } from './users/sing-in/sing-in.component';
-import { SignupComponent } from './users/signup/signup.component';
+//import { UsersComponent } from './users/users.component';
+import { SingInComponent } from './sing-in/sing-in.component';
+import { SignupComponent } from './signup/signup.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { PmoComponent } from './pmo/pmo.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 const routes: Routes = [
   {
-    path: 'signup', component: UsersComponent, children: [
-      {path: '', component: SignupComponent}
-    ]
-  },
-  {
-    path: 'signin', component: UsersComponent, 
-    children: [
-      {path: '', component: SingInComponent}
-    ]
-  },
-  {
-    path: 'user', component: UserDetailComponent, 
-    canActivate: [AuthguardGuard]
-  },
-  {
-    path: 'userdetail', 
-    component: UserDetailComponent, 
-    canActivate: [AuthguardGuard]
-  },
-  {
-    path: '', redirectTo:'/signup', pathMatch: 'full'
+    path: 'register', component: SignupComponent
+  },{
+    path: 'signin', component: SingInComponent
+  },{
+    path: 'userdetail', component: UserDetailComponent
+  },{
+    path: 'admin', component: AdminComponent
+  },{
+    path: 'pmo', component: PmoComponent
+  },{
+    path: '', redirectTo:'/register', pathMatch: 'full'
   }
 ];
 

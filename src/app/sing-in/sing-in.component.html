@@ -1,6 +1,6 @@
 <div class="text-center mt-5">
 <form class="border border-light p-5 col-md-5 offset-md-4"
-  #signInUserForm="ngForm" (ngSubmit)="onSubmit(signInUserForm)">
+  #signInUserForm="ngForm" (ngSubmit)="signInUserForm.submitted && onSubmit(signInUserForm)">
 
         <p class="h4 mb-4">Sign in</p>
         
@@ -22,8 +22,8 @@
             <app-error-msg *ngIf="password.errors && password.errors.minlength" [formErrorMsg]="'Password should be more then 4 chanractors'"></app-error-msg>              
         </div>
 
-        
-        <button class="btn btn-outline-info btn-block my-4" type="submit" [disabled]="signInUserForm.invalid">Login in</button>
-        <button class="btn btn-outline-info btn-block my-4" type="button" routerLink="/signup">Sign up</button>
+        <!-- [disabled]="signInUserForm.invalid" -->
+        <button class="btn btn-outline-info btn-block my-4" type="submit" >Login in</button>
+        <button class="btn btn-outline-info btn-block my-4" type="button" routerLink="/register">Sign up</button>
     </form>
 </div>

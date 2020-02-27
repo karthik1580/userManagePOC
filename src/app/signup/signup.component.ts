@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserService } from '../../shared/user.service';
+import { UserService } from '../shared/user.service';
 import { Toster } from 'src/app/models/toster.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -22,7 +23,7 @@ export class SignupComponent implements OnInit {
 
   tosermsg: Toster[] = [];
   showAlertMessage: boolean = false;
-  constructor( private fb: FormBuilder, private userservice: UserService) { }
+  constructor( private fb: FormBuilder, private userservice: UserService, private _router: Router) { }
 
   ngOnInit() {
     this.signUpForm = this.fb.group (
@@ -47,6 +48,8 @@ export class SignupComponent implements OnInit {
   onSubmitSignupForm(form: FormGroup){
     this.userservice.saveUser(form.value).subscribe(
       (res) => {        
+        localStorage.setItem('token', res.token);
+        this._router.navigate(['/signin']);
         this.showAlertMessage = true;
         this.tosermsg.push({title : "Success", message : "User created Successfully" });
         this.resetForm();
@@ -55,7 +58,7 @@ export class SignupComponent implements OnInit {
       (err) => {
         this.showAlertMessage = true;
         this.errorMsg = err.error.text;
-        this.tosermsg.push({title : "Error", message : this.errorMsg.toString() });
+        this.tosermsg.push({title : "Error", message : this.errorMsg });
         this.closeToster();
       }
     );
