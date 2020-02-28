@@ -1,5 +1,5 @@
 <div class="custom-toast">
-    <div class="toast-header" [innerText]="toserMsg.title">
+    <div class="toast-header" [ngClass]="toserMsg.title === 'Success' ? 'successToster' : 'errorToster'" [innerText]="toserMsg.title">
     </div>
     <div class="toast-body" [innerText]="toserMsg.message">
     </div>

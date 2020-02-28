@@ -10,27 +10,33 @@ import { Router } from '@angular/router';
 })
 export class SingInComponent implements OnInit {
 
-  // model = {
-  //   email: '',
-  //   password: ''
-  // }
   autnMemberLogin = {}
   emailPattern: any = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+  unauthorizedUser: string;
+  showUnAuthError: boolean = false;
   
   constructor( private userservice: UserService, private _router: Router) { }
 
   ngOnInit() {
   }
   onSubmit(form: NgForm){
-    console.log('Form', form.value);
+    //console.log('Form', form.value);
     this.userservice.loginuser(form.value).subscribe(
       res => {
-        console.log('looin res', res)
+        debugger;
+        console.log('----------looin res', res);
         localStorage.setItem('token', res.token);
-        //if(res.role === ''){}
         this._router.navigate(['/userdetail']);
       },
-      err => console.log('looin err', err)
+      err => {
+        this.unauthorizedUser = err.error;
+        this.showUnAuthError = true;
+        this.closeErrorMsg();
+      }
     )
+  }
+
+  closeErrorMsg() {
+    setTimeout(() => this.showUnAuthError = false , 5000)
   }
 }

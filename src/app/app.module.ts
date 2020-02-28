@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UsersComponent } from './users/users.component';
 import { SignupComponent } from './signup/signup.component';
 import { SingInComponent } from './sing-in/sing-in.component';
 import { ErrorMsgComponent } from './reUsableComponent/error-msg/error-msg.component';
@@ -14,15 +13,13 @@ import { ErrorMsgWrapperComponent } from './reUsableComponent/error-msg-wrapper/
 import { TosterComponent } from './reUsableComponent/toster/toster.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { HeaderComponent } from './common/header/header.component';
-import { AdminComponent } from './admin/admin.component';
-import { PmoComponent } from './pmo/pmo.component';
 import { UserService } from './shared/user.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersComponent,
     SignupComponent,
     SingInComponent,
     ErrorMsgComponent,
@@ -30,8 +27,7 @@ import { UserService } from './shared/user.service';
     TosterComponent,
     UserDetailComponent,
     HeaderComponent,
-    AdminComponent,
-    PmoComponent
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +36,10 @@ import { UserService } from './shared/user.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService, AuthguardGuard],
+  providers: [AuthguardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
+//UserService

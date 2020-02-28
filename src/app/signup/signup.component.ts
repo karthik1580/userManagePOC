@@ -28,12 +28,12 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
     this.signUpForm = this.fb.group (
       {
-        firstName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
-        lastName: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
-        enterpriseId: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(15)]],
+        firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+        lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+        enterpriseId: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
         role: ['User'],
         email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
-        password: ['', [Validators.required, Validators.minLength(5)]]
+        password: ['', [Validators.required, Validators.minLength(2)]]
       }
     );     
   }
@@ -42,18 +42,19 @@ export class SignupComponent implements OnInit {
     setTimeout(()=>{
       this.showAlertMessage = false;
       this.tosermsg = [];
-    },3000);
+    },5000);
   }
 
   onSubmitSignupForm(form: FormGroup){
     this.userservice.saveUser(form.value).subscribe(
       (res) => {        
-        localStorage.setItem('token', res.token);
-        this._router.navigate(['/signin']);
+        //localStorage.setItem('token', res.token);
         this.showAlertMessage = true;
-        this.tosermsg.push({title : "Success", message : "User created Successfully" });
+        this.tosermsg.push({title : "Success", message : "User created Successfully and waiting for Approval" });
         this.resetForm();
         this.closeToster();
+        //setTimeout(() => this._router.navigate(['/dashboard']) ,5000)
+        
       },
       (err) => {
         this.showAlertMessage = true;

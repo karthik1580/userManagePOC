@@ -17,10 +17,6 @@ export class TosterComponent implements OnInit {
   }
   getMessgae() {  
     this.toserMsg = this.toserMessage[0];
-    console.log('this.toserMsg', this.toserMsg);
-  }  
-  closeToser(){
-    
-  }
+  } 
 
 }

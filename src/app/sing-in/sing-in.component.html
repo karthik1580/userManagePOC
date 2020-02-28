@@ -2,8 +2,10 @@
 <form class="border border-light p-5 col-md-5 offset-md-4"
   #signInUserForm="ngForm" (ngSubmit)="signInUserForm.submitted && onSubmit(signInUserForm)">
 
+  <app-error-msg [ngClass]="{'errorMsgClass' : showUnAuthError}" *ngIf="unauthorizedUser && showUnAuthError" [formErrorMsg]="unauthorizedUser"></app-error-msg>
         <p class="h4 mb-4">Sign in</p>
         
+
         <div [ngClass]="{'has-error': email.errors && (email.touched || email.dirty)}">
             <input type="email" id="input-email" class="form-control mb-4" 
             required placeholder="E-mail" #email="ngModel" ngModel name="email" [(ngModel)]="autnMemberLogin.email" autocomplete="off"

@@ -1,6 +1,6 @@
 <div class="text-center mt-5">
     <form class="col-md-10 offset-md-1 border border-light p-5" 
-    [formGroup]="signUpForm" (ngSubmit)="signUpForm.valid && onSubmitSignupForm(signUpForm)">
+    [formGroup]="signUpForm" (ngSubmit)="onSubmitSignupForm(signUpForm)">
         <p class="h4 mb-4">Sign Up</p>
         <div class="row">
             <div class="col-md-6" 
@@ -18,7 +18,7 @@
                         [formErrorMsg]="'First name is required'"></app-error-msg>
                     <app-error-msg 
                         *ngIf="signUpForm.get('firstName').errors.minlength || signUpForm.get('firstName').errors.maxlength"
-                        [formErrorMsg]="'First name must be grater then 5 to 10 charactors'"></app-error-msg>
+                        [formErrorMsg]="'First name must be grater then 4 to 10 charactors'"></app-error-msg>
                 </span>
             
             </div>
@@ -34,7 +34,7 @@
                         [formErrorMsg]="'Last name is required'"></app-error-msg>
                     <app-error-msg 
                         *ngIf="signUpForm.get('lastName').errors.minlength || signUpForm.get('lastName').errors.maxlength"
-                        [formErrorMsg]="'Last name must be grater then 5 to 10 charactors'"></app-error-msg>
+                        [formErrorMsg]="'Last name must be grater then 4 to 10 charactors'"></app-error-msg>
                 </span>
             </div>
         </div>
@@ -53,7 +53,7 @@
                         [formErrorMsg]="'Enterprice name is required'"></app-error-msg>
                     <app-error-msg 
                         *ngIf="signUpForm.get('enterpriseId').errors.minlength || signUpForm.get('enterpriseId').errors.maxlength"
-                        [formErrorMsg]="'Enterprice must be grater then 5 to 10 charactors'"></app-error-msg>
+                        [formErrorMsg]="'Enterprice must be grater then 4 to 10 charactors'"></app-error-msg>
                 </span>
                 
             </div>
@@ -98,7 +98,7 @@
                         [formErrorMsg]="'password name is required'"></app-error-msg>
                     <app-error-msg 
                         *ngIf="signUpForm.get('password').errors.minlength"
-                        [formErrorMsg]="'password must be minimum 5 charactors'"></app-error-msg>
+                        [formErrorMsg]="'password must be minimum 4 charactors'"></app-error-msg>
                 </span>
             </div>
         </div>

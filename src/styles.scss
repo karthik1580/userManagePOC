@@ -2,6 +2,7 @@
 $lightGray: #e0e0e0;
 $red: #ff0000;
 $darkGray: #888888;
+$white: #ffffff;
 
 .border-light{
     border: 1px solid $lightGray !important;
@@ -43,7 +44,13 @@ $darkGray: #888888;
             animation: fadein 1s;
     .toast-header{ 
         background-color: #23bfd8;       
-        color: $darkGray;        
+        color: $white;        
+    }
+    .successToster{
+        background-color: #23bfd8;  
+    }
+    .errorToster{
+        background-color: $red;  
     }
 }
 
@@ -74,4 +81,10 @@ $darkGray: #888888;
 @-o-keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
+}
+
+.errorMsgClass{
+    background-color: $red;
+    color: white;
+    padding: 5px 10px;
 }
