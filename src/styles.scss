@@ -88,3 +88,11 @@ $white: #ffffff;
     color: white;
     padding: 5px 10px;
 }
+
+.list-group-item{
+    div {
+        button {
+            margin-left: .5rem;
+        }
+    }
+}

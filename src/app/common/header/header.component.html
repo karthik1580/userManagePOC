@@ -3,14 +3,18 @@
     <div class="navbar-header" >
       <div class="navbar-brand">PMO Management</div>
     </div>
-    <ul class="navbar-nav" style="width:80%">
+    <ul class="navbar-nav" style="width:70%">
       <li><a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
-      <li><a class="nav-link" routerLink="/userdetail" routerLinkActive="active">User</a></li>
+      <!-- <li><a class="nav-link" routerLink="/userdetail" routerLinkActive="active">User</a></li> -->
+      <li><a class="nav-link" routerLink="/user" routerLinkActive="active">User</a></li>
+      <li><a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a routerLink="/signin">Logout</a></li>
-      <li><a routerLink="/signin">SignIn</a> /</li>
-      <li>&nbsp;<a routerLink="/register">Register</a></li>
+      <li *ngIf="user.loggedIn()"><a routerLink="/signin" (click)="logout()">Logout</a></li>
+      <li *ngIf="!user.loggedIn()">
+        <a routerLink="/signin" >SignIn</a> / 
+        <a routerLink="/register" >Register</a></li>
+      
     </ul>
   </div>
 </nav>

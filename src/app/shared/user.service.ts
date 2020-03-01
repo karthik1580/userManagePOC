@@ -29,4 +29,8 @@ selectedUser: User = {
     // !! -- double nikate
     return !!localStorage.getItem('token');
   }
+  getAllRegUser(){
+    return this.http.get<any>(environment.apiBaseUrl+'/user');
+  }
+  
 }

@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-sing-in',
   templateUrl: './sing-in.component.html',
-  styleUrls: ['./sing-in.component.scss']
+  styleUrls: ['./sing-in.component.scss'],
+  providers: []
 })
 export class SingInComponent implements OnInit {
 
@@ -20,13 +21,10 @@ export class SingInComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit(form: NgForm){
-    //console.log('Form', form.value);
     this.userservice.loginuser(form.value).subscribe(
       res => {
-        debugger;
-        console.log('----------looin res', res);
         localStorage.setItem('token', res.token);
-        this._router.navigate(['/userdetail']);
+        this._router.navigate(['/admin']);
       },
       err => {
         this.unauthorizedUser = err.error;

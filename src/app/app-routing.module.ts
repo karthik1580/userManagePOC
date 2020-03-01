@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SingInComponent } from './sing-in/sing-in.component';
 import { SignupComponent } from './signup/signup.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthguardGuard } from './auth/authguard.guard';
+import { UserComponent } from './users/user/user.component';
+import { AdminComponent } from './users/admin/admin.component';
+import { PmoComponent } from './users/pmo/pmo.component';
 
 
 const routes: Routes = [
@@ -13,11 +15,15 @@ const routes: Routes = [
   },{
     path: 'signin', component: SingInComponent
   },{
-    path: 'userdetail', component: UserDetailComponent
+    path: 'user', component: UserComponent, canActivate: [AuthguardGuard]
+  },{
+    path: 'admin', component: AdminComponent, canActivate: [AuthguardGuard]
+  },{
+    path: 'pmo', component: PmoComponent, canActivate: [AuthguardGuard]
   },{
     path: 'dashboard', component: DashboardComponent
   },{
-    path: '', redirectTo:'/userdetail', pathMatch: 'full'
+    path: '', redirectTo:'/signin', pathMatch: 'full'
   }
 ];
 //, canActivate: [AuthguardGuard]

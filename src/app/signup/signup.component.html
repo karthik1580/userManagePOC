@@ -57,14 +57,18 @@
                 </span>
                 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" [ngClass]="{'has-error': adminCountError}">
                 <select class="browser-default form-control mb-4" 
-                    formControlName="role">
+                    formControlName="role" (change)="roleSelectionChanges($event)">
                     <option *ngFor="let role of roles; let i = index" 
                         [ngValue]="role"
-                        [attr.selected]="i == 0 ? true : null"
-                        [innerText]="role"></option>
+                        [innerText]="role">{{ role }}</option>
                   </select>
+
+                  <div>
+                    <app-error-msg *ngIf="adminCountError"
+                        [formErrorMsg]="'Adnin user should not create more then 5'"></app-error-msg>
+                  </div>
             </div>
         </div>
 

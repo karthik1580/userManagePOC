@@ -1,0 +1,17 @@
+<div class="container">
+    <h4 class="card-title">Admin</h4>
+    <br>
+      <ul class="list-group">
+        
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+        *ngFor="let user of registeredUser; let i = index;">
+            <span [innerText]="user.enterpriseId"></span>
+          <div>
+            <button class="btn btn-outline-success btn-sm" *ngIf="!user.isVaidUser" (click)="userPermission(user._id)">Enabling</button>
+            <button class="btn btn btn-outline-secondary btn-sm" *ngIf="user.isVaidUser">Disabling</button>
+            <button class="btn btn btn-outline-primary btn-sm">Detail</button>          
+            <button class="btn btn btn-outline-danger btn-sm">Delete</button>
+          </div>
+        </li>
+      </ul>
+    </div>

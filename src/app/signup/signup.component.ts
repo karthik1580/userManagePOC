@@ -3,19 +3,19 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../shared/user.service';
 import { Toster } from 'src/app/models/toster.model';
 import { Router } from '@angular/router';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
-  providers: []
 })
 export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
   roles: Array<string> = [    
-    'User',
-    'Pmo',
     'Admin',
+    'Pmo',
+    'User'
   ];
 
   emailPattern: any = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
@@ -23,15 +23,18 @@ export class SignupComponent implements OnInit {
 
   tosermsg: Toster[] = [];
   showAlertMessage: boolean = false;
+  adminCountError: boolean = false;
   constructor( private fb: FormBuilder, private userservice: UserService, private _router: Router) { }
-
+  registeredUser: any;
   ngOnInit() {
+    this.getAllRegistedUser();
+
     this.signUpForm = this.fb.group (
       {
         firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
         lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
         enterpriseId: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-        role: ['User'],
+        role: ['Admin'],
         email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
         password: ['', [Validators.required, Validators.minLength(2)]]
       }
@@ -44,8 +47,42 @@ export class SignupComponent implements OnInit {
       this.tosermsg = [];
     },5000);
   }
+  getAllRegistedUser(){
+    this.userservice.getAllRegUser().subscribe(
+      res => {
+        this.registeredUser = res;       
+      },
+      err => {}
+    );
+  }
+
+  roleSelectionChanges(event: any){
+    this.roleSelection();
+  }
+  roleSelection(){
+    let registerAdmin = [];
+    if(this.signUpForm.value.role === "Admin"){
+
+      for (let i = 0; i < this.registeredUser.length; i++) {
+          registerAdmin.push(this.registeredUser[i]);
+          if(registerAdmin.length > 3){
+              this.adminCountError = true;
+              return false;
+          }
+      }
+    }
+  }
 
   onSubmitSignupForm(form: FormGroup){
+    
+    
+    if(this.registeredUser)
+      form.value.isVaidUser = !this.registeredUser.length ? true : false;
+    
+    if(this.signUpForm.value.role === "Admin"){
+      this.roleSelection();
+    }
+
     this.userservice.saveUser(form.value).subscribe(
       (res) => {        
         //localStorage.setItem('token', res.token);
@@ -53,7 +90,7 @@ export class SignupComponent implements OnInit {
         this.tosermsg.push({title : "Success", message : "User created Successfully and waiting for Approval" });
         this.resetForm();
         this.closeToster();
-        //setTimeout(() => this._router.navigate(['/dashboard']) ,5000)
+        setTimeout(() => this._router.navigate(['/signin']) ,4000)
         
       },
       (err) => {
@@ -71,7 +108,7 @@ export class SignupComponent implements OnInit {
         firstName: [''],
         lastName: [''],
         enterpriseId: [''],
-        role: ['User'],
+        role: ['Admin'],
         email: [''],
         password: ['']
       }

@@ -15,6 +15,9 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { HeaderComponent } from './common/header/header.component';
 import { UserService } from './shared/user.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AdminComponent } from './users/admin/admin.component';
+import { PmoComponent } from './users/pmo/pmo.component';
+import { UserComponent } from './users/user/user.component';
 
 
 @NgModule({
@@ -27,7 +30,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     TosterComponent,
     UserDetailComponent,
     HeaderComponent,
-    DashboardComponent
+    DashboardComponent,
+    AdminComponent,
+    PmoComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
