@@ -8,7 +8,7 @@
             <span [innerText]="user.enterpriseId"></span>
           <div>
             <button class="btn btn-outline-success btn-sm" *ngIf="!user.isVaidUser" (click)="userPermission(user._id)">Enabling</button>
-            <button class="btn btn btn-outline-secondary btn-sm" *ngIf="user.isVaidUser">Disabling</button>
+            <button class="btn btn btn-outline-secondary btn-sm" *ngIf="user.isVaidUser" (click)="userPermission(user._id)">Disabling</button>
             <button class="btn btn btn-outline-primary btn-sm">Detail</button>          
             <button class="btn btn btn-outline-danger btn-sm">Delete</button>
           </div>

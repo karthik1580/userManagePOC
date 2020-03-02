@@ -32,5 +32,8 @@ selectedUser: User = {
   getAllRegUser(){
     return this.http.get<any>(environment.apiBaseUrl+'/user');
   }
+  getToken(){
+    return localStorage.getItem('token');
+  }
   
 }

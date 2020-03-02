@@ -2,7 +2,7 @@ import { AuthguardGuard } from './auth/authguard.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminComponent } from './users/admin/admin.component';
 import { PmoComponent } from './users/pmo/pmo.component';
 import { UserComponent } from './users/user/user.component';
+import { TokenInterceptorService } from './shared/token-interceptor.service';
 
 
 @NgModule({
@@ -42,7 +43,11 @@ import { UserComponent } from './users/user/user.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthguardGuard],
+  providers: [AuthguardGuard, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

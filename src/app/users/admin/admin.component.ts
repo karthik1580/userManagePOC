@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRoleService } from '../../shared/user-role.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { User } from '../../models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -10,7 +11,7 @@ import { User } from '../../models/user.model';
 })
 export class AdminComponent implements OnInit {
   registeredUser: any;
-  constructor(private userRole: UserRoleService ) { }
+  constructor(private userRole: UserRoleService, private _router: Router ) { }
 
   ngOnInit() {
     this.getUsers()
@@ -22,20 +23,29 @@ export class AdminComponent implements OnInit {
         this.registeredUser = res;
       },
       err => {
-        console.log('UserComponent err', err);
+        if(err instanceof HttpErrorResponse){
+          if(err.status === 401){
+            console.log('401 auth error')
+            this._router.navigate(['/signin'])
+          }
+        }
       })
   }
 
-  userPermission(userId: any){
-    console.log('userId', userId);
-    debugger;
-    //return this.userRole.updateUser(userId).subscribe(
+  userPermission(userId){
+    
     return this.userRole.updateUserById(userId).subscribe(
       res => {
+        
         console.log("userId", res);
+        this.getUsers();
       },
       err => {
-        console.log("err", err);
+        if(err instanceof HttpErrorResponse){
+          if(err.status === 401){
+            this._router.navigate(['/signin'])
+          }
+        }
       }
     )
   }
