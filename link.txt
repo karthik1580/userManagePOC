@@ -1,0 +1,3 @@
+https://embed.plnkr.co/plunk/9luTng  [Very important]
+https://jasonwatmore.com/post/2018/05/16/angular-6-user-registration-and-login-example-tutorial
+https://www.linkedin.com/pulse/angular-6-login-session-authentication-reactive-form-validation-das

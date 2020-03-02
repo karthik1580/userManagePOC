@@ -23,7 +23,6 @@ export class UserRoleService {
   }
 
   updateUserResetPwd(data){
-    debugger;
-    return this.http.put<any>(environment.apiBaseUrl+'/admin/'+ data._id, { password: null }, httpOptions);
+    return this.http.put<any>(environment.apiBaseUrl+'/user/'+ data._id, { password: 'Support' }, httpOptions);
   }
 }
