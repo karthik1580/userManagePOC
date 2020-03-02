@@ -7,14 +7,15 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-selectedUser: User = {
-  enterpriseId: '',
-    firstName: '',
-    lastName: '',
-    role: '',
-    email: '',
-    password: ''
-}
+  selectedUser: User = {
+    enterpriseId: '',
+      firstName: '',
+      lastName: '',
+      role: '',
+      email: '',
+      password: ''
+  }
+  enableResetButton: boolean;
   constructor(private http: HttpClient) { }
 
   saveUser(user: User){
@@ -34,6 +35,9 @@ selectedUser: User = {
   }
   getToken(){
     return localStorage.getItem('token');
+  }
+  resetPassword(){
+    this.enableResetButton = true;
   }
   
 }

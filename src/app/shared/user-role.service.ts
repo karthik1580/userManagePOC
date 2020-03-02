@@ -15,14 +15,15 @@ export class UserRoleService {
   constructor(private http: HttpClient) { }
 
   getAllUsers(){
-    return this.http.get<any>(environment.apiBaseUrl+'/user');
+    return this.http.get<any>(environment.apiBaseUrl+'/admin');
   }
 
-  updateUserById(data){
-    return this.http.put<any>(environment.apiBaseUrl+'/user/:id', data, httpOptions)
+  updateUserById(data, enableDiasble){
+    return this.http.put<any>(environment.apiBaseUrl+'/admin/'+ data._id, { isValid: enableDiasble }, httpOptions);
   }
 
-  // userDeleteBi(data: User){
-  //   return this.http.put<any>(environment.apiBaseUrl+'/user/:id', data, httpOptions);
-  // }
+  updateUserResetPwd(data){
+    debugger;
+    return this.http.put<any>(environment.apiBaseUrl+'/admin/'+ data._id, { password: null }, httpOptions);
+  }
 }

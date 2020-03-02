@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Validators, NgForm } from '@angular/forms';
 import { UserService } from '../shared/user.service';
 import { Router } from '@angular/router';
@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
   providers: []
 })
 export class SingInComponent implements OnInit {
-
   autnMemberLogin = {}
   emailPattern: any = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   unauthorizedUser: string;
   showUnAuthError: boolean = false;
+  @Output() isResetPassword = new EventEmitter();
   
   constructor( private userservice: UserService, private _router: Router) { }
 
@@ -34,7 +34,13 @@ export class SingInComponent implements OnInit {
     )
   }
 
+  resetPassword(){
+    this.isResetPassword.emit({pwdRequest: true});
+  }
+
   closeErrorMsg() {
     setTimeout(() => this.showUnAuthError = false , 5000)
   }
+
+
 }

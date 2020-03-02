@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRoleService } from '../../shared/user-role.service';
+import { UserService } from '../../shared/user.service';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { User } from '../../models/user.model';
 import { Router } from '@angular/router';
@@ -11,7 +12,9 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
   registeredUser: any;
-  constructor(private userRole: UserRoleService, private _router: Router ) { }
+  isEnablebutton: boolean = true;
+  isDiasablebutton: boolean = false;
+  constructor(private userRole: UserRoleService, private _userService: UserService ,private _router: Router ) { }
 
   ngOnInit() {
     this.getUsers()
@@ -32,12 +35,24 @@ export class AdminComponent implements OnInit {
       })
   }
 
-  userPermission(userId){
-    
-    return this.userRole.updateUserById(userId).subscribe(
-      res => {
-        
-        console.log("userId", res);
+  userPermission(user: any, enableDiasble:boolean){    
+    return this.userRole.updateUserById(user, enableDiasble).subscribe(
+      res => {        
+        this.getUsers();
+      },
+      err => {
+        if(err instanceof HttpErrorResponse){
+          if(err.status === 401){
+            this._router.navigate(['/signin'])
+          }
+        }
+      }
+    )
+  }
+
+  resetPwdById(user){    
+    return this.userRole.updateUserResetPwd(user).subscribe(
+      res => {        
         this.getUsers();
       },
       err => {

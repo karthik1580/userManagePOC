@@ -90,7 +90,7 @@ export class SignupComponent implements OnInit {
         this.tosermsg.push({title : "Success", message : "User created Successfully and waiting for Approval" });
         this.resetForm();
         this.closeToster();
-        setTimeout(() => this._router.navigate(['/signin']) ,4000)
+        //setTimeout(() => this._router.navigate(['/signin']) ,4000)
         
       },
       (err) => {
