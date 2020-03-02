@@ -1,3 +1,9 @@
 https://embed.plnkr.co/plunk/9luTng  [Very important]
 https://jasonwatmore.com/post/2018/05/16/angular-6-user-registration-and-login-example-tutorial
 https://www.linkedin.com/pulse/angular-6-login-session-authentication-reactive-form-validation-das
+https://blog.couchbase.com/creating-front-end-user-profile-store-angular-typescript/
+
+https://stackoverflow.com/questions/55905667/angular-7-display-username-after-successful-login
+https://medium.com/front-end-weekly/learn-using-jwt-with-passport-authentication-9761539c4314
+
+http://techcommunity.softwareag.com/pwiki/-/wiki/Main/Securing%20APIs%20using%20JSON%20Web%20Token%20in%20API%20Gateway

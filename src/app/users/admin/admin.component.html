@@ -1,5 +1,5 @@
 <div class="container">
-    <h4 class="card-title" [innerText]="registeredUser.role"></h4>
+    <!-- <h4 class="card-title" [innerText]="registeredUser.role"></h4> -->
     <br>
       <ul class="list-group">
         
@@ -10,8 +10,8 @@
 
           <div>
             <button class="btn btn btn-outline-info btn-sm" (click)="resetPwdById(user, 'ResetBtn')">Reset password</button>
-            <button class="btn btn-outline-success btn-sm" *ngIf="!user.isVaidUser" (click)="userPermission(user, isEnablebutton, 'enableDiasableButton')" >Enabling</button>
-            <button class="btn btn btn-outline-secondary btn-sm" *ngIf="user.isVaidUser" (click)="userPermission(user, isDiasablebutton,'enableDiasableButton')">Disabling</button>
+            <button class="btn btn-outline-success btn-sm" *ngIf="!user.isVaidUser" (click)="userPermission(user, isEnablebutton, 'enableDiasableButton')" >Enable user</button>
+            <button class="btn btn btn-outline-secondary btn-sm" *ngIf="user.isVaidUser" (click)="userPermission(user, isDiasablebutton,'enableDiasableButton')">Disable user</button>
             <button class="btn btn btn-outline-primary btn-sm">Detail</button>          
             <button class="btn btn btn-outline-danger btn-sm">Delete</button>
           </div>
