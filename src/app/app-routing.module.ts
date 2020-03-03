@@ -7,6 +7,8 @@ import { AuthguardGuard } from './auth/authguard.guard';
 import { UserComponent } from './users/user/user.component';
 import { AdminComponent } from './users/admin/admin.component';
 import { PmoComponent } from './users/pmo/pmo.component';
+import { CreateIncidentComponent } from './pages/create-incident/create-incident.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -22,6 +24,10 @@ const routes: Routes = [
     path: 'pmo', component: PmoComponent, canActivate: [AuthguardGuard]
   },{
     path: 'dashboard', component: DashboardComponent
+  },{
+    path: 'incident', component: CreateIncidentComponent
+  },{
+    path: 'resetPwd', component: ResetPasswordComponent
   },{
     path: '', redirectTo:'/signin', pathMatch: 'full'
   }

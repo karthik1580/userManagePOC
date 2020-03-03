@@ -14,7 +14,7 @@ export class SingInComponent implements OnInit {
   emailPattern: any = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   unauthorizedUser: string;
   showUnAuthError: boolean = false;
-  //@Output() isResetPassword = new EventEmitter();
+  @Output() isResetPassword = new EventEmitter();
   
   constructor( private userservice: UserService, private _router: Router) { }
 
@@ -23,9 +23,7 @@ export class SingInComponent implements OnInit {
   onSubmit(form: NgForm){
     this.userservice.loginuser(form.value).subscribe(
       res => {
-        console.log('res.form.value', res);
         localStorage.setItem('token', res.token);
-        localStorage.setItem('currentUser', 'test');
         this._router.navigate(['/admin']);
       },
       err => {
@@ -36,9 +34,9 @@ export class SingInComponent implements OnInit {
     )
   }
 
-  // resetPassword(){
-  //   this.isResetPassword.emit({pwdRequest: true});
-  // }
+  resetPassword(){
+    this.isResetPassword.emit({pwdRequest: true});
+  }
 
   closeErrorMsg() {
     setTimeout(() => this.showUnAuthError = false , 5000)

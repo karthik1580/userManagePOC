@@ -19,6 +19,8 @@ import { AdminComponent } from './users/admin/admin.component';
 import { PmoComponent } from './users/pmo/pmo.component';
 import { UserComponent } from './users/user/user.component';
 import { TokenInterceptorService } from './shared/token-interceptor.service';
+import { CreateIncidentComponent } from './pages/create-incident/create-incident.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { TokenInterceptorService } from './shared/token-interceptor.service';
     DashboardComponent,
     AdminComponent,
     PmoComponent,
-    UserComponent
+    UserComponent,
+    CreateIncidentComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

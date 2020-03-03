@@ -11,19 +11,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  registeredUser: any;
+  registeredUser: any = [];
+  adminUsersList: boolean;
   isEnablebutton: boolean = true;
   isDiasablebutton: boolean = false;
+  
   constructor(private userRole: UserRoleService, private _userService: UserService ,private _router: Router ) { }
 
   ngOnInit() {
-    this.getUsers()
+    this.getUsers();
+
   }
 
   getUsers() {
      return this.userRole.getAllUsers().subscribe(
       res => {
-        this.registeredUser = res;
+        //this.registeredUser = res;
+        this.getCurrentUser(res);
       },
       err => {
         if(err instanceof HttpErrorResponse){
@@ -33,6 +37,18 @@ export class AdminComponent implements OnInit {
           }
         }
       })
+  }
+
+  getCurrentUser(res: any){
+    let currentUser = "5e5e3bb64458b864608bd853";
+    for(let user of res){
+      if(currentUser === user['_id']){
+        continue;
+      }
+      this.registeredUser.push(user);
+    }
+
+    this.adminUsersList = this.registeredUser.length > 0 ? true : false;
   }
 
   userPermission(user: any, enableDiasble:boolean){    

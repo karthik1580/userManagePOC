@@ -1,51 +1,53 @@
 <div class="container">
     <h4 class="card-title">User</h4>
     
-    <div class="text-center mt-5">
-      <form class="border border-light p-5 col-md-12"
-        #incidentForm="ngForm" (ngSubmit)="incidentForm.submitted && onSubmit(incidentForm)">
-
-        <div [ngClass]="{'has-error': incidentTitle.errors && (incidentTitle.touched || incidentTitle.dirty)}">
-          <input type="text" id="input-title" class="form-control mb-4" required placeholder="Title" #incidentTitle="ngModel" ngModel name="incidentTitle" [(ngModel)]="incidentTitleValue" autocomplete="off"
-            />
-          <app-error-msg *ngIf="incidentTitle.errors && incidentTitle.touched" [formErrorMsg]="'Title is required'"></app-error-msg>
-        </div>
-
-        <div [ngClass]="{'has-error': incidentDescription.errors && (incidentDescription.touched || incidentDescription.dirty)}">
-          <textarea type="text" id="input-title" class="form-control mb-4" row='3' required 
-          placeholder="Title" #incidentDescription="ngModel" ngModel name="incidentDescription" [(ngModel)]="incidentDescriptionValue"></textarea>
-
-          <app-error-msg *ngIf="incidentDescription.errors && incidentDescription.touched" [formErrorMsg]="'Description is required'"></app-error-msg>
-        </div>
-      
-              <button class="btn btn-outline-info btn-block my-4" type="submit" >Create Incident</button>
-      </form>
-      </div>
-      <br/><br/>
       <div class="row">
         <ul class="list-group coloumnBy2" style="width: 100%;">        
           <li class="list-group-item" >
-              <h5 [innerText]="user.enterpriseId">Title</h5>
-              <span [innerText]="user.enterpriseId">Desctiption</span>
+              <h5>Title</h5>
+              <span>Desctiption Desctiption Desctiption  Desctiption  Desctiption  Desctiption  Desctiption  Desctiption </span>
               <br>
               <br>
-            <div>
-              <button class="btn btn btn-outline-primary btn-sm">Closed</button>          
-              <button class="btn btn btn-outline-info btn-sm">Pending</button>
+            <div class="listGroup-alignRight">
+              <button class="btn btn btn-outline-primary btn-sm">Open</button>          
+              <button class="btn btn btn-outline-success btn-sm">Closed</button>          
+              <button class="btn btn btn-outline-info btn-sm">In Progress</button>
+              <button class="btn btn btn-outline-success btn-sm">Resolved</button>
               <button class="btn btn btn-outline-danger btn-sm">Rejected</button>
+              <button class="btn btn btn-outline-warning btn-sm">Clarification Required</button>
+              <button class="btn btn btn-outline-warning btn-sm">Clarification Received</button>
             </div>
           </li>
-          <li class="list-group-item" style="float: left;">
-            <h5 [innerText]="user.enterpriseId">Title</h5>
-              <span [innerText]="user.enterpriseId">Desctiption</span>
-              <br>
-              <br>
-          <div>
-            <button class="btn btn btn-outline-primary btn-sm">Closed</button>          
-            <button class="btn btn btn-outline-info btn-sm">Pending</button>
+          <li class="list-group-item" >
+            <h5>Title</h5>
+            <span>Desctiption Desctiption Desctiption  Desctiption  Desctiption  Desctiption  Desctiption  Desctiption </span>
+            <br>
+            <br>
+          <div class="listGroup-alignRight">
+            <button class="btn btn btn-outline-primary btn-sm">Open</button>          
+            <button class="btn btn btn-outline-success btn-sm">Closed</button>          
+            <button class="btn btn btn-outline-info btn-sm">In Progress</button>
+            <button class="btn btn btn-outline-success btn-sm">Resolved</button>
             <button class="btn btn btn-outline-danger btn-sm">Rejected</button>
+            <button class="btn btn btn-outline-warning btn-sm">Clarification Required</button>
+            <button class="btn btn btn-outline-warning btn-sm">Clarification Received</button>
           </div>
         </li>
+        <li class="list-group-item" >
+          <h5>Title</h5>
+          <span>Desctiption Desctiption Desctiption  Desctiption  Desctiption  Desctiption  Desctiption  Desctiption </span>
+          <br>
+          <br>
+        <div class="listGroup-alignRight">
+          <button class="btn btn btn-outline-primary btn-sm">Open</button>          
+          <button class="btn btn btn-outline-success btn-sm">Closed</button>          
+          <button class="btn btn btn-outline-info btn-sm">In Progress</button>
+          <button class="btn btn btn-outline-success btn-sm">Resolved</button>
+          <button class="btn btn btn-outline-danger btn-sm">Rejected</button>
+          <button class="btn btn btn-outline-warning btn-sm">Clarification Required</button>
+          <button class="btn btn btn-outline-warning btn-sm">Clarification Received</button>
+        </div>
+      </li>
         </ul>
       </div>
 
