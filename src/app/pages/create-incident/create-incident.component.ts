@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { IncidentService } from '../../shared/incident.service';
+import { NgForm } from '@angular/forms';
+import { Incident } from '../../models/incident.model';
 
 @Component({
   selector: 'app-create-incident',
@@ -6,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-incident.component.scss']
 })
 export class CreateIncidentComponent implements OnInit {
-
+  
   incedentType: Array<string> = [
     'Mouse issue',
     'Keyboard issue',
@@ -15,10 +18,21 @@ export class CreateIncidentComponent implements OnInit {
     'Headset',
     'Decommission'
   ];
+  incidentList: Array<string> = [];
 
-  constructor() { }
+  constructor(private http: IncidentService) { }
 
   ngOnInit() {
   }
+
+  onSubmit(form: NgForm){
+    this.http.createIncident(form.value).subscribe(
+      (res) => { 
+        this.incidentList = res;
+       },
+      (err) => {}
+    )
+  }
+  
 
 }

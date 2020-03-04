@@ -1,6 +1,6 @@
 <div class="container">
   <h4 class="card-title">PMO</h4>
-    <div class="row list-group">
+    <div class="row list-group" *ngIf="!noIncidentList">
       <div class="listGroup-alignRight">
         <button class="btn btn btn-outline-primary btn-sm">Open</button>          
         <button class="btn btn btn-outline-success btn-sm">Closed</button>          
@@ -9,54 +9,31 @@
         <button class="btn btn btn-outline-danger btn-sm">Rejected</button>
       </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="incidentList; else noIncidentList">
       <ul class="custom-list-group" style="width: 100%;">        
-        <li class="list-group-item1" >
-            <h5>Title</h5>
-            <span>Desctiption Desctiption Desctiption  Desctiption  Desctiption  Desctiption  Desctiption  Desctiption </span>
+        <li class="list-group-item1" *ngFor="let incident of incidentList; let i = index" >
+            <h5 [innerText]="incident.title"></h5>
+            <span [innerText]="incident.description"></span>
             <br>
             <br>
           <div class="listGroup-alignRight">
-            <!-- <button class="btn btn btn-outline-primary btn-sm">Open</button>           -->
-            <button class="btn btn btn-outline-success btn-sm">Closed</button>          
-            <button class="btn btn btn-outline-info btn-sm">In Progress</button>
-            <button class="btn btn btn-outline-success btn-sm">Resolved</button>
-            <!-- <button class="btn btn btn-outline-danger btn-sm">Rejected</button> -->
-            <!-- <button class="btn btn btn-outline-warning btn-sm">Clarification Required</button> -->
-            <button class="btn btn btn-outline-warning btn-sm">Clarification Received</button>
+            <button class="btn btn btn-outline-primary btn-sm" *ngIf="incident.isOpen && !incident.isResolved" (click)="onOpenItem(incident)">Open</button>
+            <button class="btn btn btn-outline-info btn-sm" *ngIf="!incident.isOpen && !incident.isResolved" (click)="onProgressItem(incident)">In Progress</button>
+
+            <button class="btn btn btn-outline-success btn-sm" *ngIf="incident.isResolved && !incident.isOpen && !incident.isClarification" (click)="onCloseItem(incident)">Closed</button>          
+
+            <button class="btn btn btn-outline-success btn-sm" *ngIf="incident.isResolved" (click)="onResolvedItem(incident)">Resolved</button>
+            <button class="btn btn btn-outline-danger btn-sm" *ngIf="!incident.isResolved" (click)="onRejectedItem(incident)">Rejected</button>
+
+            <button class="btn btn btn-outline-warning btn-sm" *ngIf="incident.isClarification" (click)="onClarificationRequired(incident)">Clarification Required</button>
+            <button class="btn btn btn-outline-warning btn-sm" *ngIf="!incident.isClarification" (click)="onClarificationReceived(incident)">Clarification Received</button>
           </div>
         </li>
-        <li class="list-group-item1" >
-          <h5>Title</h5>
-          <span>Desctiption Desctiption Desctiption  Desctiption  Desctiption  Desctiption  Desctiption  Desctiption </span>
-          <br>
-          <br>
-        <div class="listGroup-alignRight">
-          <!-- <button class="btn btn btn-outline-primary btn-sm">Open</button>           -->
-          <button class="btn btn btn-outline-success btn-sm">Closed</button>          
-          <button class="btn btn btn-outline-info btn-sm">In Progress</button>
-          <!-- <button class="btn btn btn-outline-success btn-sm">Resolved</button> -->
-          <button class="btn btn btn-outline-danger btn-sm">Rejected</button>
-          <button class="btn btn btn-outline-warning btn-sm">Clarification Required</button>
-          <!-- <button class="btn btn btn-outline-warning btn-sm">Clarification Received</button> -->
-        </div>
-      </li>
-      <li class="list-group-item1" >
-        <h5>Title</h5>
-        <span>Desctiption Desctiption Desctiption  Desctiption  Desctiption  Desctiption  Desctiption  Desctiption </span>
-        <br>
-        <br>
-      <div class="listGroup-alignRight">
-        <button class="btn btn btn-outline-primary btn-sm">Open</button>          
-        <!-- <button class="btn btn btn-outline-success btn-sm">Closed</button>           -->
-        <button class="btn btn btn-outline-info btn-sm">In Progress</button>
-        <button class="btn btn btn-outline-success btn-sm">Resolved</button>
-        <!-- <button class="btn btn btn-outline-danger btn-sm">Rejected</button> -->
-        <!-- <button class="btn btn btn-outline-warning btn-sm">Clarification Required</button> -->
-        <button class="btn btn btn-outline-warning btn-sm">Clarification Received</button>
-      </div>
-    </li>
+        
       </ul>
     </div>
-
+    
+    <ng-template #noIncidentList>
+      <h5 class="text-center ptb21" [innerHtml]="'No records found'"></h5>
+    </ng-template>
 </div>

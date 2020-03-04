@@ -13,7 +13,10 @@ import { ErrorMsgWrapperComponent } from './reUsableComponent/error-msg-wrapper/
 import { TosterComponent } from './reUsableComponent/toster/toster.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { HeaderComponent } from './common/header/header.component';
+
 import { UserService } from './shared/user.service';
+import { IncidentService } from './shared/incident.service';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminComponent } from './users/admin/admin.component';
 import { PmoComponent } from './users/pmo/pmo.component';
@@ -47,7 +50,7 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
     FormsModule,
     HttpClientModule
   ],
-  providers: [AuthguardGuard, {
+  providers: [UserService, IncidentService, AuthguardGuard, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
