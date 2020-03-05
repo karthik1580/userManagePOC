@@ -17,5 +17,9 @@ export class IncidentService {
   getAllInsident(){
     return this.http.get<any>(environment.apiBaseUrl+'/incident');
   }
-    
+
+  getIncidentById(id: any){
+    return this.http.get<any>(environment.apiBaseUrl+'/incident/'+ id);
+  }    
+ 
 }

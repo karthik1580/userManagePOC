@@ -1,24 +1,28 @@
 <div class="container">
   <h4 class="card-title">Create Incident</h4>
-  
+ 
   <div class="text-center mt-5">
     <form class="border border-light p-5 col-md-12"
     #incidentForm="ngForm" (ngSubmit)="incidentForm.valid && onSubmit(incidentForm)">
-    <div class="form-group" [ngClass]="{'has-error': incidentForm.error} && (incident)">
-      <input type="text" id="inputEmail" class="form-control mb-4" readonly placeholder="Enter your e-Mail" 
-        #incidentTitle="ngModel" ngModel name="referenceEmail" [(ngModel)]="refreenceEmailid" autocomplete="off"/>
+
+    <div class="form-group" [ngClass]="{'has-error': incidentEmail.error && (incidentEmail.touched || incidentEmail.dirty)}">
+      <input type="text" id="inputEmail" class="form-control mb-4" readonly 
+        #incidentEmail="ngModel" ngModel name="referenceEmail" [(ngModel)]="refreenceEmailid" autocomplete="off"/>
     </div>
-    <div class="form-group" [ngClass]="{'has-error': incidentForm.error} && (incident)">
+
+    <div class="form-group" [ngClass]="{'has-error': incidentForm.error}">
       <input type="text" id="input-title" class="form-control mb-4" required placeholder="Enter your title" 
       #incidentTitle="ngModel" ngModel name="incidentTitle" [(ngModel)]="incidentTitleValue" autocomplete="off"/>
       <app-error-msg *ngIf="incidentTitle.errors && incidentTitle.touched" [formErrorMsg]="'Title is required'"></app-error-msg>
     </div>
-    <div [ngClass]="{'has-error': incidentTitle.errors && (incidentTitle.touched || incidentTitle.dirty)}">
-      <select class="browser-default form-control mb-4">
+
+    <div [ngClass]="{'has-error': incidentType.errors && (incidentType.touched || incidentType.dirty)}">
+      <select class="browser-default form-control mb-4"
+      #incidentType="ngModel" ngModel name="incidentType" [(ngModel)]="referenceType">
           <option *ngFor="let type of incedentType; let i = index" 
-              [ngValue]="role" [innerText]="type">{{ type }}</option>
+              [ngValue]="type" [innerText]="type">{{ type }}</option>
       </select>
-      <app-error-msg *ngIf="incidentTitle.errors && incidentTitle.touched" [formErrorMsg]="'Title is required'"></app-error-msg>
+      <app-error-msg *ngIf="incidentType.errors && incidentType.touched" [formErrorMsg]="'Title is required'"></app-error-msg>
     </div>
 
     <div [ngClass]="{'has-error': incidentDescription.errors && (incidentDescription.touched || incidentDescription.dirty)}">

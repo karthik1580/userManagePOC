@@ -19,6 +19,7 @@ export class CreateIncidentComponent implements OnInit {
     'Decommission'
   ];
   incidentList: Array<string> = [];
+  refreenceEmailid: string = 'k@k.com';
 
   constructor(private http: IncidentService) { }
 
@@ -26,6 +27,10 @@ export class CreateIncidentComponent implements OnInit {
   }
 
   onSubmit(form: NgForm){
+    // form.value.enterpriseId = "Karthik.Parameswaran";
+    // form.value.firstName = "Karthik.Parameswaran";
+    // form.value.lastName = "Karthik.Parameswaran";
+
     this.http.createIncident(form.value).subscribe(
       (res) => { 
         this.incidentList = res;
