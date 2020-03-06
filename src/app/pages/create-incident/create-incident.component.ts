@@ -19,9 +19,12 @@ export class CreateIncidentComponent implements OnInit {
     'Decommission'
   ];
   incidentList: Array<string> = [];
-  refreenceEmailid: string = 'k@k.com';
+  refreenceEmailid: string = 'k@k.com'; //Admin
+  //refreenceEmailid: string = 'k@k.com'; //Pmo
+  //refreenceEmailid: string = 'user4@g.com'; //User
 
-  constructor(private http: IncidentService) { }
+
+  constructor(private _incidentService: IncidentService) { }
 
   ngOnInit() {
   }
@@ -30,12 +33,14 @@ export class CreateIncidentComponent implements OnInit {
     // form.value.enterpriseId = "Karthik.Parameswaran";
     // form.value.firstName = "Karthik.Parameswaran";
     // form.value.lastName = "Karthik.Parameswaran";
-
-    this.http.createIncident(form.value).subscribe(
+    //console.log('form.value', form.value);
+    this._incidentService.createIncident(form.value).subscribe(
       (res) => { 
         this.incidentList = res;
        },
-      (err) => {}
+      (err) => {
+        console.log('Error in create incident');
+      }
     )
   }
   

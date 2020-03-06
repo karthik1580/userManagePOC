@@ -63,7 +63,7 @@ export class SignupComponent implements OnInit {
     let registerAdmin = [];
     if(this.signUpForm.value.role === "Admin"){
 
-      for (let i = 0; i < this.registeredUser.length; i++) {
+      for (let i = 0; i < this.registeredUser; i++) {
           registerAdmin.push(this.registeredUser[i]);
           if(registerAdmin.length > 3){
               this.adminCountError = true;
