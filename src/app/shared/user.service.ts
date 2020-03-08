@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse  } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { User } from '../models/user.model';
+import { Observable } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -23,11 +24,11 @@ export class UserService {
   selectedByEmailId: string;
   constructor(private http: HttpClient) { }
 
-  saveUser(user: User){
+  saveUser(user: User): Observable<any>{
     return this.http.post<any>(environment.apiBaseUrl+'/register', user);
   }
 
-  loginuser(user: User){
+  loginuser(user: User): Observable<any>{
     return this.http.post<any>(environment.apiBaseUrl+'/login', user)
   }
 
@@ -35,7 +36,7 @@ export class UserService {
     // !! -- double nikate
     return !!localStorage.getItem('token');
   }
-  getAllRegUser(){
+  getAllRegUser(): Observable<any>{
     return this.http.get<any>(environment.apiBaseUrl+'/user');
   }
   getToken(){

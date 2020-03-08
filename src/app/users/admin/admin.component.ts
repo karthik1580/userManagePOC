@@ -41,7 +41,7 @@ export class AdminComponent implements OnInit {
 
   getCurrentUser(res: any){
     this.registeredUser = [];
-    let currentUser = "5e5e3bb64458b864608bd853";
+    let currentUser = "5e64ade2ed465612e8f8586b";
     for(let user of res){
       if(currentUser === user['_id']){
         continue;

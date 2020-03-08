@@ -20,14 +20,15 @@ export class SignupComponent implements OnInit {
 
   emailPattern: any = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   errorMsg: any;
-
   tosermsg: Toster[] = [];
   showAlertMessage: boolean = false;
   adminCountError: boolean = false;
-  constructor( private fb: FormBuilder, private userservice: UserService, private _router: Router) { }
   registeredUser: any;
+  isVaidUser: boolean;
+
+  constructor( private fb: FormBuilder, private userservice: UserService, private _router: Router) { }
   ngOnInit() {
-    this.getAllRegistedUser();
+    //this.getAllRegistedUser();
 
     this.signUpForm = this.fb.group (
       {
@@ -47,14 +48,18 @@ export class SignupComponent implements OnInit {
       this.tosermsg = [];
     },5000);
   }
-  getAllRegistedUser(){
-    this.userservice.getAllRegUser().subscribe(
-      res => {
-        this.registeredUser = res;       
-      },
-      err => {}
-    );
-  }
+  // getAllRegistedUser(form){
+  //   debugger;
+  //   this.userservice.getAllRegUser().subscribe(
+  //     res => {
+  //       this.registeredUser = res;  
+  //       debugger;      
+  //       this.isVaidUser = this.registeredUser.length == 0 ? true : false;
+  //       this.saveFormData(form);
+  //     },
+  //     err => {}
+  //   );
+  // }
 
   roleSelectionChanges(event: any){
     this.roleSelection();
@@ -64,6 +69,7 @@ export class SignupComponent implements OnInit {
     if(this.signUpForm.value.role === "Admin"){
 
       for (let i = 0; i < this.registeredUser; i++) {
+        if(this.registeredUser.role == "Admin")
           registerAdmin.push(this.registeredUser[i]);
           if(registerAdmin.length > 3){
               this.adminCountError = true;
@@ -75,14 +81,36 @@ export class SignupComponent implements OnInit {
 
   onSubmitSignupForm(form: FormGroup){
     
+    //this.getAllRegistedUser(form);
+
+    this.userservice.getAllRegUser().subscribe(
+      res => {
+        this.registeredUser = res;        
+        
+        this.saveFormData(form);
+      },
+      err => {}
+    );
     
-    if(this.registeredUser)
-      form.value.isVaidUser = !this.registeredUser.length ? true : false;
-    
+    //form.value.isVaidUser = this.registeredUser.length == 0 ? true : false;
+  
     if(this.signUpForm.value.role === "Admin"){
       this.roleSelection();
     }
 
+    //if(this.registeredUser){
+      //console.log('this.registeredUser &&&&&&&&&&&&&&&&&&&&&&&&',  this.registeredUser);
+      //debugger;
+
+      //form.value.isVaidUser = this.registeredUser.length == 0 ? true : false;
+    form.value.isVaidUser = this.isVaidUser;
+
+    
+  }
+
+  saveFormData(form){    
+    this.isVaidUser = this.registeredUser.length == 0 ? true : false;
+    form.value.isVaidUser = this.isVaidUser;
     this.userservice.saveUser(form.value).subscribe(
       (res) => {        
         //localStorage.setItem('token', res.token);
@@ -101,7 +129,6 @@ export class SignupComponent implements OnInit {
       }
     );
   }
-
   resetForm(){
     this.signUpForm = this.fb.group (
       {
@@ -115,4 +142,6 @@ export class SignupComponent implements OnInit {
     );
   }
 }
+
+
 
