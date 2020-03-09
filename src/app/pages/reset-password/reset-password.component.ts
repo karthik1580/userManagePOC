@@ -10,7 +10,7 @@ import { User } from '../../models/user.model';
   styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit {
-  resetPassword: string = "Support";
+  resetPassword: string = "support";
   selectedUser: Array<string> = [];
   constructor( private userservice: UserService, private _router: Router) { }
 
@@ -28,6 +28,7 @@ export class ResetPasswordComponent implements OnInit {
       
       return this.userservice.getSelectedByEmail(form.value).subscribe(
         (res) => { 
+          debugger;
           this.selectedUser = res
           this.updatePassword(res, form.value);
         },

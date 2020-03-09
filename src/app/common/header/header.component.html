@@ -5,11 +5,11 @@
     </div>
     <ul class="navbar-nav" style="width:70%">
       <li><a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
-      <li><a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a></li>
+      <!-- <li><a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a></li>
       <li><a class="nav-link" routerLink="/pmo" routerLinkActive="active">Pmo</a></li>
-      <li><a class="nav-link" routerLink="/user" routerLinkActive="active">User</a></li>
-      <li><a class="nav-link" routerLink="/incident" routerLinkActive="active">Incident</a></li>
-      <li><a class="nav-link" routerLink="/resetPwd" routerLinkActive="active">Reset password</a></li>
+      <li><a class="nav-link" routerLink="/user" routerLinkActive="active">User</a></li> -->
+      <li><a class="nav-link" routerLink="/incident" routerLinkActive="active">Create incident</a></li>
+      <!-- <li><a class="nav-link" routerLink="/resetPwd" routerLinkActive="active">Reset password</a></li> -->
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li *ngIf="user.loggedIn()"><a routerLink="/signin" (click)="logout()">Logout</a></li>

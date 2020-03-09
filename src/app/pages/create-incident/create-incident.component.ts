@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IncidentService } from '../../shared/incident.service';
 import { NgForm } from '@angular/forms';
 import { Incident } from '../../models/incident.model';
+import { LoggedUserService } from 'src/app/shared/logged-user.service';
 
 @Component({
   selector: 'app-create-incident',
@@ -19,21 +20,18 @@ export class CreateIncidentComponent implements OnInit {
     'Decommission'
   ];
   incidentList: Array<string> = [];
-  refreenceEmailid: string = 'k@k.com'; //Admin
-  //refreenceEmailid: string = 'k@k.com'; //Pmo
-  //refreenceEmailid: string = 'user4@g.com'; //User
+  refreenceEmailid: string; //Admin
 
 
-  constructor(private _incidentService: IncidentService) { }
+  constructor(private _incidentService: IncidentService, private loggedUser: LoggedUserService) { }
 
   ngOnInit() {
+    console.log('loggedUser', this.loggedUser);
+    this.refreenceEmailid = this.loggedUser.loggedInUser.email;
   }
 
   onSubmit(form: NgForm){
-    // form.value.enterpriseId = "Karthik.Parameswaran";
-    // form.value.firstName = "Karthik.Parameswaran";
-    // form.value.lastName = "Karthik.Parameswaran";
-    //console.log('form.value', form.value);
+    
     this._incidentService.createIncident(form.value).subscribe(
       (res) => { 
         this.incidentList = res;

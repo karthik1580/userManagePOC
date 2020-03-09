@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Validators, NgForm } from '@angular/forms';
 import { UserService } from '../shared/user.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute  } from '@angular/router';
+import { LoggedUserService } from '../shared/logged-user.service';
 
 @Component({
   selector: 'app-sing-in',
@@ -14,11 +15,19 @@ export class SingInComponent implements OnInit {
   emailPattern: any = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   unauthorizedUser: string;
   showUnAuthError: boolean = false;
-  @Output() isResetPassword = new EventEmitter();
+  //@Output() isResetPassword = new EventEmitter();
+  returnUrl: string;
   
-  constructor( private userservice: UserService, private _router: Router) { }
+  constructor( 
+    private userservice: UserService, 
+    private loggedUser: LoggedUserService, 
+    private _router: Router,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit() {
+    //this.userservice.;
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
   onSubmit(form: NgForm){
     if(form.value.password === "support"){
@@ -28,7 +37,8 @@ export class SingInComponent implements OnInit {
         this.userservice.loginuser(form.value).subscribe(
           res => {
             localStorage.setItem('token', res.token);
-            this._router.navigate(['/admin']);
+            this.getSelectedUser(form.value);
+            
           },
           err => {
             this.unauthorizedUser = err.error;
@@ -39,13 +49,37 @@ export class SingInComponent implements OnInit {
     }
   }
 
-  resetPassword(){
-    this.isResetPassword.emit({pwdRequest: true});
-  }
+  // resetPassword(){
+  //   this.isResetPassword.emit({pwdRequest: true});
+  // }
 
   closeErrorMsg() {
     setTimeout(() => this.showUnAuthError = false , 5000)
   }
+  getSelectedUser(formValue){
+    this.userservice.getUserDetails(formValue.email).subscribe(
+       res => {
+            this.loggedUser.loggedInUser = res;
+            if(res.role === "Admin"){
 
+              this._router.navigate(['/admin']);
+            }else if(res.role === "Pmo"){
+              this._router.navigate(['/pmo']);
+            }else{
+              this._router.navigate(['/user']);
+            }
+
+            
+            
+          },
+          err => {
+            this.unauthorizedUser = err.error;
+            this.showUnAuthError = true;
+            this.closeErrorMsg();
+          }
+    );
+
+    
+  }
 
 }

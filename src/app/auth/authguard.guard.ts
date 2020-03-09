@@ -1,7 +1,14 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { UserService } from '../shared/user.service';
 
+//https://stackoverflow.com/questions/36277506/prevent-routing-in-angular-when-user-manually-changes-url-in-browser-tab
+
+// class Permissions {
+//   canGoToRoute(user: UserToken, id: string): boolean {
+//     return true;
+//   }
+// }
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +16,11 @@ import { UserService } from '../shared/user.service';
 export class AuthguardGuard implements CanActivate {
   constructor(private _authService: UserService, private _router: Router) { }
 
-  canActivate(): boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if(this._authService.loggedIn()){
       return true;
     }else {
-      this._router.navigate(['/signin']);
+      this._router.navigate(['/signin'], { queryParams: { returnUrl: state.url }});
       return false;
     }
   }

@@ -24,6 +24,7 @@ import { UserComponent } from './users/user/user.component';
 import { TokenInterceptorService } from './shared/token-interceptor.service';
 import { CreateIncidentComponent } from './pages/create-incident/create-incident.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { LoggedUserService } from './shared/logged-user.service';
 
 
 @NgModule({
@@ -50,7 +51,7 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService, IncidentService, AuthguardGuard, {
+  providers: [UserService, IncidentService, LoggedUserService , AuthguardGuard, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true

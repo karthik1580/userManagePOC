@@ -42,9 +42,13 @@ export class UserService {
   getToken(){
     return localStorage.getItem('token');
   }
-  resetPassword(){
-    this.enableResetButton = true;
+
+  getUserDetails(id: any): Observable<any>{
+    return this.http.get<any>(environment.apiBaseUrl+'/login/'+ id);
   }
+  // resetPassword(){
+  //   this.enableResetButton = true;
+  // }
   // getSelectedUser(id: any){
   //   return this.http.get<any>(environment.apiBaseUrl+'/user/'+id);
   // }
@@ -70,8 +74,6 @@ export class UserService {
   }
 
   getUserSelectedById(data: User){
-    debugger;
-    console.log('data', data);
     return this.http.put<any>(environment.apiBaseUrl+'/resetPass/'+ data._id, data, httpOptions)
   }
   
