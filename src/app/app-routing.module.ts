@@ -33,7 +33,6 @@ const routes: Routes = [
     path: '', redirectTo:'/signin', pathMatch: 'full'
   }
 ];
-//, canActivate: [AuthguardGuard]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

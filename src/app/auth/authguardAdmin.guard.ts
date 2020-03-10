@@ -21,10 +21,20 @@ export class AuthguardAdminGuard implements CanActivate {
     
     if(this._authService.loggedIn() && this.currentUser.role === 'Admin' && route.url[0].path === 'admin'){
       return true;
-    }else if(route.url[0].path !== 'admin') {
+    }else if(this.currentUser.role === 'User'){
+      this._router.navigate(['/user']);
+      return false
+    }else if(this.currentUser.role === 'Pmo'){
+      this._router.navigate(['/pmo']);
+      return false
+    }
+
+    /*
+    else if(route.url[0].path !== 'admin') {
       this._router.navigate(['/admin']);
       return false;
     }
+    */
   }
   retriveLocalStorageObj() {
     var retrievedObject = localStorage.getItem('loggedInUser');

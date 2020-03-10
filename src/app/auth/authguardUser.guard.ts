@@ -21,9 +21,15 @@ export class AuthguardUserGuard implements CanActivate {
    
     if(this._authService.loggedIn() && this.currentUser.role === 'User' && route.url[0].path === 'user'){
       return true;       
-    }else if(route.url[0].path !== 'user') {
+    }else if(this._authService.loggedIn() && this.currentUser.role === 'Admin'){
+      this._router.navigate(['/admin']);
+      return false
+    }else if(this._authService.loggedIn() && this.currentUser.role === 'Pmo'){
+      this._router.navigate(['/pmo']);
+      return false
+    }else if(this._authService.loggedIn() && route.url[0].path !== 'user' || route.url[0].path !== ''){
       this._router.navigate(['/user']);
-      return false;
+      return false
     }
   }
   retriveLocalStorageObj() {
