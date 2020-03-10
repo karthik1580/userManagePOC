@@ -23,10 +23,9 @@ export class UserComponent implements OnInit {
   }
 
   getIncidentByIdData(data: any) {
-    console.log('data----------',data);
-    this.incidentService.getAllInsident().subscribe(
+    debugger;
+    this.incidentService.getIncidentById(data._id).subscribe(
       res => { 
-        console.log('res', res);
          this.incidentList = res;
         // this.isIncidentList = this.incidentList.length > 0 ? true : false;
       },
