@@ -1,4 +1,6 @@
-import { AuthguardGuard } from './auth/authguard.guard';
+import { AuthguardAdminGuard } from './auth/authguardAdmin.guard';
+import { AuthguarPmoGuard } from './auth/authguardPmo.guard';
+import { AuthguardUserGuard } from './auth/authguardUser.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -24,7 +26,7 @@ import { UserComponent } from './users/user/user.component';
 import { TokenInterceptorService } from './shared/token-interceptor.service';
 import { CreateIncidentComponent } from './pages/create-incident/create-incident.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
-import { LoggedUserService } from './shared/logged-user.service';
+//import { LoggedUserService } from './shared/logged-user.service';
 
 
 @NgModule({
@@ -51,7 +53,7 @@ import { LoggedUserService } from './shared/logged-user.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService, IncidentService, LoggedUserService , AuthguardGuard, {
+  providers: [UserService, IncidentService , AuthguardAdminGuard, AuthguarPmoGuard, AuthguardUserGuard, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true

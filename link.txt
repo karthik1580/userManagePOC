@@ -41,3 +41,16 @@ POst
 https://github.com/codeforgeek/node-refresh-token/
 
 https://stackoverflow.com/questions/36277506/prevent-routing-in-angular-when-user-manually-changes-url-in-browser-tab
+
+https://www.tutorialkart.com/nodejs/mongoose/insert-multiple-documents-to-mongodb/
+https://www.javatpoint.com/javascript-objects
+https://kb.objectrocket.com/mongo-db/how-to-do-a-one-to-many-join-using-mongoose-229
+
+https://medium.com/@brandon.lau86/one-to-many-relationships-with-mongodb-and-mongoose-in-node-express-d5c9d23d93c2
+
+https://bezkoder.com/mongodb-many-to-many-mongoose/
+
+
+https://www.tutorialkart.com/nodejs/node-js-try-catch/ -------(.X.)
+
+https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=adding-dropdowns-via-data-attributes

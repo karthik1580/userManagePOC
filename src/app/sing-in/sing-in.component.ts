@@ -60,16 +60,24 @@ export class SingInComponent implements OnInit {
     this.userservice.getUserDetails(formValue.email).subscribe(
        res => {
             this.loggedUser.loggedInUser = res;
-            if(res.role === "Admin"){
 
+            let resObj: any = {
+              _id: res._id,
+              enterpriseId: res.enterpriseId,
+              firstName: res.firstName,
+              lastName: res.lastName,
+              role: res.role,
+              email: res.email
+            }
+
+            localStorage.setItem('loggedInUser', JSON.stringify(resObj));
+            if(res.role === "Admin"){
               this._router.navigate(['/admin']);
             }else if(res.role === "Pmo"){
               this._router.navigate(['/pmo']);
-            }else{
+            }else if(res.role === "User"){
               this._router.navigate(['/user']);
-            }
-
-            
+            }           
             
           },
           err => {

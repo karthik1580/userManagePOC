@@ -2,52 +2,26 @@
     <h4 class="card-title">User</h4>
     
       <div class="row">
-        <ul class="list-group coloumnBy2" style="width: 100%;">        
+        <ul class="list-group coloumnBy2" style="width: 100%;" *ngFor="let incident of incidentList">        
           <li class="list-group-item" >
-              <h5>Title</h5>
-              <span>Desctiption Desctiption Desctiption  Desctiption  Desctiption  Desctiption  Desctiption  Desctiption </span>
-              <br>
+            <h5 [innerText]="incident.title"></h5>
+              <span [innerText]="incident.description"></span>
+             <br>
               <br>
             <div class="listGroup-alignRight">
-              <button class="btn btn btn-outline-primary btn-sm">Open</button>          
-              <button class="btn btn btn-outline-success btn-sm">Closed</button>          
-              <button class="btn btn btn-outline-info btn-sm">In Progress</button>
-              <button class="btn btn btn-outline-success btn-sm">Resolved</button>
-              <button class="btn btn btn-outline-danger btn-sm">Rejected</button>
-              <button class="btn btn btn-outline-warning btn-sm">Clarification Required</button>
-              <button class="btn btn btn-outline-warning btn-sm">Clarification Received</button>
+              <button class="btn btn btn-outline-primary btn-sm" *ngIf="incident.isOpen && !incident.isResolved" (click)="onOpenItem(incident)">Open</button>
+                  <button class="btn btn btn-outline-info btn-sm" *ngIf="!incident.isOpen && !incident.isResolved" (click)="onProgressItem(incident)">In Progress</button>
+
+                  <!-- <button class="btn btn btn-outline-success btn-sm" *ngIf="incident.isResolved && !incident.isOpen && !incident.isClarification" (click)="onCloseItem(incident)">Closed</button> -->
+                  <button class="btn btn btn-outline-success btn-sm" *ngIf="incident.isClosed" (click)="onCloseItem(incident)">Closed</button>          
+
+                  <button class="btn btn btn-outline-success btn-sm" *ngIf="incident.isResolved" (click)="onResolvedItem(incident)">Resolved</button>
+                  <button class="btn btn btn-outline-danger btn-sm" *ngIf="!incident.isResolved" (click)="onRejectedItem(incident)">Rejected</button>
+
+                  <button class="btn btn btn-outline-warning btn-sm" *ngIf="incident.isClarification" (click)="onClarificationRequired(incident)">Clarification Required</button>
+                  <button class="btn btn btn-outline-warning btn-sm" *ngIf="!incident.isClarification" (click)="onClarificationReceived(incident)">Clarification Received</button>
             </div>
           </li>
-          <li class="list-group-item" >
-            <h5>Title</h5>
-            <span>Desctiption Desctiption Desctiption  Desctiption  Desctiption  Desctiption  Desctiption  Desctiption </span>
-            <br>
-            <br>
-          <div class="listGroup-alignRight">
-            <button class="btn btn btn-outline-primary btn-sm">Open</button>          
-            <button class="btn btn btn-outline-success btn-sm">Closed</button>          
-            <button class="btn btn btn-outline-info btn-sm">In Progress</button>
-            <button class="btn btn btn-outline-success btn-sm">Resolved</button>
-            <button class="btn btn btn-outline-danger btn-sm">Rejected</button>
-            <button class="btn btn btn-outline-warning btn-sm">Clarification Required</button>
-            <button class="btn btn btn-outline-warning btn-sm">Clarification Received</button>
-          </div>
-        </li>
-        <li class="list-group-item" >
-          <h5>Title</h5>
-          <span>Desctiption Desctiption Desctiption  Desctiption  Desctiption  Desctiption  Desctiption  Desctiption </span>
-          <br>
-          <br>
-        <div class="listGroup-alignRight">
-          <button class="btn btn btn-outline-primary btn-sm">Open</button>          
-          <button class="btn btn btn-outline-success btn-sm">Closed</button>          
-          <button class="btn btn btn-outline-info btn-sm">In Progress</button>
-          <button class="btn btn btn-outline-success btn-sm">Resolved</button>
-          <button class="btn btn btn-outline-danger btn-sm">Rejected</button>
-          <button class="btn btn btn-outline-warning btn-sm">Clarification Required</button>
-          <button class="btn btn btn-outline-warning btn-sm">Clarification Received</button>
-        </div>
-      </li>
         </ul>
       </div>
 

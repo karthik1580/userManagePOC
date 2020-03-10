@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRoleService } from '../../shared/user-role.service';
+import { Incident } from '../../models/incident.model';
+import { IncidentService } from '../../shared/incident.service'; 
 import { UserService } from '../../shared/user.service';
 
 
@@ -10,21 +12,34 @@ import { UserService } from '../../shared/user.service';
 })
 export class UserComponent implements OnInit {
   roleBasedUser : [];
-  constructor(private userRole: UserRoleService, private userservice:UserService ) { }
+  incidentList: Incident[] = [];
+  isIncidentList: boolean = false;
+  currentUser: any = {};
+  constructor(private userRole: UserRoleService, private incidentService: IncidentService, private userservice:UserService ) { }
 
   ngOnInit() {
-    //this.getUsers()
+    this.retriveLocalStorageObj();
+    this.getIncidentByIdData(this.currentUser);
   }
 
-  // getUsers() {
-  //    return this.userRole.getAllUsers().subscribe(
-  //     res => {
-  //       console.log('UserComponent', res);
-  //     },
-  //     err => {
-  //       console.log('UserComponent err', err);
-  //     })
-  // }
+  getIncidentByIdData(data: any) {
+    console.log('data----------',data);
+    this.incidentService.getAllInsident().subscribe(
+      res => { 
+        console.log('res', res);
+         this.incidentList = res;
+        // this.isIncidentList = this.incidentList.length > 0 ? true : false;
+      },
+      err => { 
+        console.log('err')
+      }
+    )
+  }
+
+  retriveLocalStorageObj() {
+    var retrievedObject = localStorage.getItem('loggedInUser');
+    this.currentUser = JSON.parse(retrievedObject);
+  }
   
 
 }

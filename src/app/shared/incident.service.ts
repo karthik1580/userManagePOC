@@ -13,12 +13,17 @@ export class IncidentService {
   createIncident(incident: Incident){
     return this.http.post<any>(environment.apiBaseUrl+'/incident', incident);
   }
-
+  updateIncident(incident: Incident){
+    return this.http.put<any>(environment.apiBaseUrl+'/incident', incident);
+  }
   getAllInsident(){
     return this.http.get<any>(environment.apiBaseUrl+'/incident');
   }
 
   getIncidentById(id: any){
+    return this.http.get<any>(environment.apiBaseUrl+'/incident/'+ id);
+  }    
+  getIncidentByMappedId(id: any){
     return this.http.get<any>(environment.apiBaseUrl+'/incident/'+ id);
   }    
  

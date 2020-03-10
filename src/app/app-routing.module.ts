@@ -3,13 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { SingInComponent } from './sing-in/sing-in.component';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { AuthguardGuard } from './auth/authguard.guard';
+import { AuthguardAdminGuard } from './auth/authguardAdmin.guard';
+import { AuthguarPmoGuard } from './auth/authguardPmo.guard';
+import { AuthguardUserGuard } from './auth/authguardUser.guard';
 import { UserComponent } from './users/user/user.component';
 import { AdminComponent } from './users/admin/admin.component';
 import { PmoComponent } from './users/pmo/pmo.component';
 import { CreateIncidentComponent } from './pages/create-incident/create-incident.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
-
 
 const routes: Routes = [
   {
@@ -17,11 +18,11 @@ const routes: Routes = [
   },{
     path: 'signin', component: SingInComponent
   },{
-    path: 'user', component: UserComponent, canActivate: [AuthguardGuard]
+    path: 'user', component: UserComponent, canActivate: [AuthguardUserGuard]
   },{
-    path: 'admin', component: AdminComponent, canActivate: [AuthguardGuard]
+    path: 'admin', component: AdminComponent, canActivate: [AuthguardAdminGuard]
   },{
-    path: 'pmo', component: PmoComponent, canActivate: [AuthguardGuard]
+    path: 'pmo', component: PmoComponent, canActivate: [AuthguarPmoGuard]
   },{
     path: 'dashboard', component: DashboardComponent
   },{

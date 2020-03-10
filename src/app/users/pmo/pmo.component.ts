@@ -46,10 +46,9 @@ export class PmoComponent implements OnInit {
   )}
 
   getIncidentByIdData(id: any) {
-    this.incidentService.getIncidentById(id).subscribe(
+    this.incidentService.updateIncident(id).subscribe(
       res => {
         this.selectedIncident = res;
-        //this.onUpdateIncident(this.selectedIncident)
       },
       err => console.log('err') 
     );
@@ -67,7 +66,9 @@ export class PmoComponent implements OnInit {
 
   }
 
-  onOpenItem() {}
+  onOpenItem(incident: any) {
+
+  }
   onProgressItem() {}
   onCloseItem() {}
   onResolvedItem() {}

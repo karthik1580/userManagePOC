@@ -13,27 +13,21 @@ import { UserService } from '../shared/user.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthguardGuard implements CanActivate {
+export class AuthguardAdminGuard implements CanActivate {
   constructor(private _authService: UserService, private _router: Router) { }
-
+  currentUser: any = {};
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if(this._authService.loggedIn()){
+    this.retriveLocalStorageObj(); 
+    
+    if(this._authService.loggedIn() && this.currentUser.role === 'Admin' && route.url[0].path === 'admin'){
       return true;
-    }else {
-      this._router.navigate(['/signin'], { queryParams: { returnUrl: state.url }});
+    }else if(route.url[0].path !== 'admin') {
+      this._router.navigate(['/admin']);
       return false;
     }
   }
+  retriveLocalStorageObj() {
+    var retrievedObject = localStorage.getItem('loggedInUser');
+    this.currentUser = JSON.parse(retrievedObject);
+  }
 }
-
-
-/*
-if (this._authService.loggedIn()) {
-      console.log('true')
-      return true
-    } else {
-      console.log('false')            
-      this._router.navigate(['/login'])
-      return false
-    }
-*/

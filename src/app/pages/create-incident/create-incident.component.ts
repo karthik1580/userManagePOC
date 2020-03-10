@@ -21,17 +21,18 @@ export class CreateIncidentComponent implements OnInit {
   ];
   incidentList: Array<string> = [];
   refreenceEmailid: string; //Admin
-
+  currentUser: any = {};
 
   constructor(private _incidentService: IncidentService, private loggedUser: LoggedUserService) { }
 
-  ngOnInit() {
-    console.log('loggedUser', this.loggedUser);
-    this.refreenceEmailid = this.loggedUser.loggedInUser.email;
+  ngOnInit() {  
+    this.retriveLocalStorageObj();
+    this.refreenceEmailid = this.currentUser.email;
   }
 
   onSubmit(form: NgForm){
-    
+    console.log('form.value', form.value);
+    form.value.userMapId = this.currentUser._id
     this._incidentService.createIncident(form.value).subscribe(
       (res) => { 
         this.incidentList = res;
@@ -40,6 +41,11 @@ export class CreateIncidentComponent implements OnInit {
         console.log('Error in create incident');
       }
     )
+  }
+
+  retriveLocalStorageObj() {
+    var retrievedObject = localStorage.getItem('loggedInUser');
+    this.currentUser = JSON.parse(retrievedObject);
   }
   
 
