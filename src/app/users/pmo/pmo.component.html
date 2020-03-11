@@ -10,38 +10,52 @@
       </div>
     </div> -->
     <div class="row" *ngIf="isIncidentList; else noIncidentList">
-      <ul class="custom-list-group" style="width: 100%;">   
-             
-                <li class="list-group-item1" *ngFor="let incident of incidentList; let i = index" > 
-                  <!-- <form 
-                      #assignWorkstation="ngForm" 
-                      (ngSubmit)="assignWorkstation.valid && onAssignWorkstation(assignWorkstation, incident)">          -->
-                        <h5 [innerText]="incident.title"></h5>
-                        <span [innerText]="incident.description"></span>
-                        <br><br>
-                        
-                        <div class="row"> 
-                          <!-- <div class="col"><select></select></div>
-                          <div class="col"><select></select></div> -->
-                          <div class="col"> <button (click)="onAssignWorkstation(incident)">Apply</button></div>
-                        </div>
-                        <br><br>
+      
+      
+      <ag-grid-angular ng-grid="gridOptions" style="width: 100%; height: 500px;" 
+      row-animation
+      pagination
+      row-selection="multiple"
+      class="ag-theme-blue"
+      [rowData]="incidentList" 
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      [frameworkComponents]="frameworkComponents"
+      (gridReady)="onGridReady($event)"
+      ></ag-grid-angular>
+      <!--(cellValueChanged)="onCellValueChanged($event)"-->
+      
+      <ul class="custom-list-group" style="width: 100%;"> 
+          <li class="list-group-item1" *ngFor="let incident of incidentList; let i = index" > 
+            <!-- <form 
+                #assignWorkstation="ngForm" 
+                (ngSubmit)="assignWorkstation.valid && onAssignWorkstation(assignWorkstation, incident)">          -->
+                  <h5 [innerText]="incident.title"></h5>
+                  <span [innerText]="incident.description"></span>
+                  <br><br>
+                  
+                  <div class="row"> 
+                    <!-- <div class="col"><select></select></div>
+                    <div class="col"><select></select></div> -->
+                    <div class="col"> <button (click)="onAssignWorkstation(incident)">Apply</button></div>
+                  </div>
+                  <br><br>
 
-                      <div class="listGroup-alignRight">
-                          <button class="btn btn btn-outline-primary btn-sm" *ngIf="incident.isOpen && !incident.isResolved" (click)="onOpenItem(incident)">Open</button>
-                          <button class="btn btn btn-outline-info btn-sm" *ngIf="!incident.isOpen && !incident.isResolved" (click)="onProgressItem(incident)">In Progress</button>
+                <div class="listGroup-alignRight">
+                    <button class="btn btn btn-outline-primary btn-sm" *ngIf="incident.isOpen && !incident.isResolved" (click)="onOpenItem(incident)">Open</button>
+                    <button class="btn btn btn-outline-info btn-sm" *ngIf="!incident.isOpen && !incident.isResolved" (click)="onProgressItem(incident)">In Progress</button>
 
-                          <!-- <button class="btn btn btn-outline-success btn-sm" *ngIf="incident.isResolved && !incident.isOpen && !incident.isClarification" (click)="onCloseItem(incident)">Closed</button> -->
-                          <button class="btn btn btn-outline-success btn-sm" *ngIf="incident.isClosed" (click)="onCloseItem(incident)">Closed</button>          
+                    <!-- <button class="btn btn btn-outline-success btn-sm" *ngIf="incident.isResolved && !incident.isOpen && !incident.isClarification" (click)="onCloseItem(incident)">Closed</button> -->
+                    <button class="btn btn btn-outline-success btn-sm" *ngIf="incident.isClosed" (click)="onCloseItem(incident)">Closed</button>          
 
-                          <button class="btn btn btn-outline-success btn-sm" *ngIf="incident.isResolved" (click)="onResolvedItem(incident)">Resolved</button>
-                          <button class="btn btn btn-outline-danger btn-sm" *ngIf="!incident.isResolved" (click)="onRejectedItem(incident)">Rejected</button>
+                    <button class="btn btn btn-outline-success btn-sm" *ngIf="incident.isResolved" (click)="onResolvedItem(incident)">Resolved</button>
+                    <button class="btn btn btn-outline-danger btn-sm" *ngIf="!incident.isResolved" (click)="onRejectedItem(incident)">Rejected</button>
 
-                          <button class="btn btn btn-outline-warning btn-sm" *ngIf="incident.isClarification" (click)="onClarificationRequired(incident)">Clarification Required</button>
-                          <button class="btn btn btn-outline-warning btn-sm" *ngIf="!incident.isClarification" (click)="onClarificationReceived(incident)">Clarification Received</button>
-                      </div>
-                    <!-- </form> -->
-                </li>
+                    <button class="btn btn btn-outline-warning btn-sm" *ngIf="incident.isClarification" (click)="onClarificationRequired(incident)">Clarification Required</button>
+                    <button class="btn btn btn-outline-warning btn-sm" *ngIf="!incident.isClarification" (click)="onClarificationReceived(incident)">Clarification Received</button>
+                </div>
+              <!-- </form> -->
+          </li>
         
         
       </ul>

@@ -13,3 +13,11 @@ export class Incident {
       isResolved: Boolean;
       isClarification: Boolean;
 }
+
+// export interface IAgGrid {
+//       enterpriseId: string;
+//       name: string;
+//       seatNo: string;
+//       Comments: string;
+
+// }

@@ -27,6 +27,9 @@ import { TokenInterceptorService } from './shared/token-interceptor.service';
 import { CreateIncidentComponent } from './pages/create-incident/create-incident.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 //import { LoggedUserService } from './shared/logged-user.service';
+import { AgGridModule } from 'ag-grid-angular';
+import { CustomAgGridComponent } from './grids/custom-ag-grid/custom-ag-grid.component';
+import { AgGridupdateButtonComponent } from './grids/ag-gridupdate-button.component';
 
 
 @NgModule({
@@ -44,14 +47,17 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
     PmoComponent,
     UserComponent,
     CreateIncidentComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    CustomAgGridComponent,
+    AgGridupdateButtonComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AgGridModule.withComponents([])
   ],
   providers: [UserService, IncidentService , AuthguardAdminGuard, AuthguarPmoGuard, AuthguardUserGuard, {
     provide: HTTP_INTERCEPTORS,

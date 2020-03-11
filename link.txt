@@ -54,3 +54,18 @@ https://bezkoder.com/mongodb-many-to-many-mongoose/
 https://www.tutorialkart.com/nodejs/node-js-try-catch/ -------(.X.)
 
 https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=adding-dropdowns-via-data-attributes
+
+https://vegibit.com/mongoose-relationships-tutorial/
+
+
+
+
+AG Grid
+
+https://plnkr.co/edit/KHj1lstv9GQncxlX4Gvx?p=preview&preview -------(.X.)
+https://codepen.io/pankajbadukale/pen/eJBmrb
+https://embed.plnkr.co/7EQt9WlJyYpl90bC/
+https://plnkr.co/edit/?p=preview&preview
+https://www.ag-grid.com/javascript-grid-cell-rendering-components/
+
+https://plnkr.co/edit/?p=preview&preview  ----- with button
