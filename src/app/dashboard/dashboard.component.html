@@ -1,64 +1,125 @@
 <div class="container">
-    <h4 class="card-title">User</h4>
-    <br>
-      <ul class="list-group">
-        
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          incident 1
-          <div>
-            <button class="btn btn-outline-success btn-sm">Enabling</button>
-            <button class="btn btn btn-outline-primary btn-sm">Detail</button>          
-            <button class="btn btn btn-outline-danger btn-sm">Delete</button>
-          </div>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          incident 1
-          <div>
-            <button class="btn btn-outline-success btn-sm">Enabling</button>
-            <button class="btn btn btn-outline-primary btn-sm">Detail</button>
-            <button class="btn btn btn-outline-danger btn-sm">Delete</button>
-          </div>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          incident 1
-          <div>
-            <!-- <button class="btn btn-success">Enabling</button> -->
-            <button class="btn btn btn-outline-secondary btn-sm">Disabling</button>
-            <button class="btn btn btn-outline-primary btn-sm">Detail</button>
-            <button class="btn btn btn-outline-danger btn-sm">Delete</button>
-          </div>
-        </li>
-      </ul>
   
-  
-      <br><br>
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">User Name</h4>
-          <p class="card-text">Some example text. Some example text.</p>
-          <ul class="userDetailListContainer">
-            <li><strong>EnterpriseId:</strong> Test User id</li>
-            <li><strong>First Name:</strong> Test User</li>
-            <li><strong>Last Name:</strong> Last Name</li>
-            <li><strong>Team:</strong> Role </li>
-            <li><strong>Email:</strong> test.abc@accenture.com</li>
-  
-            <li><strong>Status:</strong> Status</li>
-            <li><strong>Seat No:</strong> CDC2B.02.0190</li>
-            <li><strong>SeatAllocation:</strong> allocate/remove</li>
-            <li><strong>ticketStatus:</strong> This is the comments conent</li>
-            <li><strong>Comments:</strong> This is the comments conent</li>
-            <li><strong>Clarification:</strong> Required Clerification</li>
-  
-          </ul>
-          <ul>
-            <li><strong>Comments:</strong> This is the comments conent</li>
-          </ul>
-          <div>
-            <button class="btn btn btn-outline-primary btn-sm float-right">Reset</button>
-            <button class="btn btn btn-outline-primary btn-sm float-right">Reset</button>
-            <button class="btn btn btn-outline-primary btn-sm float-right">Reset</button>
-          </div>
-        </div>
-      </div>
+  <div class="row mb-3 mt-3">
+    
+    <div class="col-md-3 offset-md-9">
+      <button class="btn btn btn-outline-primary btn-md" style="width: 67%;">Create incident</button> &nbsp;
+      <button class="btn btn btn-outline-secondary btn-md">Count</button>
+    </div>
   </div>
+
+  <div class="row mb-3">
+    <div class="col-xl-3 col-sm-6 py-2">
+        <div class="card bg-success text-white h-100">
+            <div class="card-body bg-success">
+                <div class="rotate">
+                    <i class="fa fa-user fa-4x"></i>
+                </div>
+                <h6 class="text-uppercase">Closed</h6>
+                <h1 class="display-4">134</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 py-2">
+        <div class="card text-white bg-danger h-100">
+            <div class="card-body bg-danger">
+                <div class="rotate">
+                    <i class="fa fa-list fa-4x"></i>
+                </div>
+                <h6 class="text-uppercase">Open</h6>
+                <h1 class="display-4">87</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 py-2">
+        <div class="card text-white bg-info h-100">
+            <div class="card-body bg-info">
+                <div class="rotate">
+                    <i class="fa fa-twitter fa-4x"></i>
+                </div>
+                <h6 class="text-uppercase">Inprogress</h6>
+                <h1 class="display-4">125</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 py-2">
+        <div class="card text-white bg-warning h-100">
+            <div class="card-body">
+                <div class="rotate">
+                    <i class="fa fa-share fa-4x"></i>
+                </div>
+                <h6 class="text-uppercase">Rejected</h6>
+                <h1 class="display-4">36</h1>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-lg-6">
+
+        <div class="card mb-3">
+            <div class="card-header">
+                Bye .well, .panel &amp; .thumbnail
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Replaced with .card</h4>
+                <p class="card-text">All of these Bootstrap 3.x components have been dropped entirely for the new card component.</p>
+                <button type="button" class="btn btn-secondary btn-lg">Large</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-6">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" href="#home1" role="tab" data-toggle="tab">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#profile1" role="tab" data-toggle="tab">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#messages1" role="tab" data-toggle="tab">Messages</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#settings1" role="tab" data-toggle="tab">Settings</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <br>
+            <div role="tabpanel" class="tab-pane active" id="home1">
+                <h4>Home</h4>
+                <p>
+                    1. These Bootstrap 4 Tabs work basically the same as the Bootstrap 3.x tabs.
+                    <br>
+                    <br>
+                    <button class="btn btn-primary-outline btn-lg">Wow</button>
+                </p>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="profile1">
+                <h4>Pro</h4>
+                <p>
+                    2. Tabs are helpful to hide or collapse some addtional content.
+                </p>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="messages1">
+                <h4>Messages</h4>
+                <p>
+                    3. You can really put whatever you want into the tab pane.
+                </p>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="settings1">
+                <h4>Settings</h4>
+                <p>
+                    4. Some of the Bootstrap 3.x components like well and panel have been dropped for the new card component.
+                </p>
+            </div>
+        </div>
+    </div>
+
+  </div>
+
+</div>

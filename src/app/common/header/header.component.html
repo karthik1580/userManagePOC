@@ -12,11 +12,30 @@
       <!-- <li><a class="nav-link" routerLink="/resetPwd" routerLinkActive="active">Reset password</a></li> -->
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li *ngIf="user.loggedIn()"><a routerLink="/signin" (click)="logout()">Logout</a></li>
+      
+      <li class="dropdown" *ngIf="user.loggedIn()">
+        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">asasdsa
+            <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li>
+                <div class="navbar-content">
+                    <span>JS Krishna</span>
+                    <p class="text-muted small">
+                        me@jskrishna.com
+                    </p>
+                    <div class="divider">
+                    </div>
+                    <a href="#" class="view btn-sm active">View Profile</a>
+                    <a routerLink="/signin" (click)="logout()">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </li>
       <li *ngIf="!user.loggedIn()">
         <a routerLink="/signin" >SignIn</a> / 
         <a routerLink="/register" >Register</a></li>
       
     </ul>
+    
   </div>
 </nav>

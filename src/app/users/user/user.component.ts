@@ -23,6 +23,7 @@ export class UserComponent implements OnInit {
   }
 
   getIncidentByIdData(data: any) {
+    console.log('currentUser', this.currentUser);
     debugger;
     this.incidentService.getIncidentById(data._id).subscribe(
       res => { 

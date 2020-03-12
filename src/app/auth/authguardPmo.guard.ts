@@ -19,6 +19,12 @@ export class AuthguarPmoGuard implements CanActivate {
     } else if(this._authService.loggedIn() && this.currentUser.role === 'Admin'){
       this._router.navigate(['/admin']);
       return false
+    }else if(this._authService.loggedIn() && this.currentUser.role === 'Pmo'){
+      this._router.navigate(['/pmo']);
+      return false
+    } else if(this._authService.loggedIn() && route.url[0].path !== 'signin'){
+      this._router.navigate(['/pmo']);
+      return false
     }else if(this._authService.loggedIn() && route.url[0].path !== 'user' || route.url[0].path !== ''){
       this._router.navigate(['/pmo']);
       return false

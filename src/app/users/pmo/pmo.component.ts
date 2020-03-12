@@ -17,7 +17,7 @@ export class PmoComponent implements OnInit {
   selectedIncident: Incident[] = [];
   isIncidentList: boolean = false;
   workstation: Array<string> = [    
-    'Remove Seat',
+    'Not yet assign',
     'CDC2B.02.191',
     'CDC2B.02.192',
     'CDC2B.02.193',
@@ -28,6 +28,15 @@ export class PmoComponent implements OnInit {
     'CDC2B.02.198',
     'CDC2B.02.199',
     'CDC2B.02.200',
+  ];
+
+  ticketStatus: Array<string> = [    
+    'Open',
+    'In Progress',
+    'Clarification Required',
+    'Clarification Received',
+    'Resolved',
+    'Rejected'
   ];
 
   gridApi: any;
