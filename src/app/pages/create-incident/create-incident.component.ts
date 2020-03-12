@@ -3,6 +3,7 @@ import { IncidentService } from '../../shared/incident.service';
 import { NgForm } from '@angular/forms';
 import { Incident } from '../../models/incident.model';
 import { LoggedUserService } from 'src/app/shared/logged-user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-incident',
@@ -21,21 +22,27 @@ export class CreateIncidentComponent implements OnInit {
   ];
   incidentList: Array<string> = [];
   refreenceEmailid: string; //Admin
-  currentUser: any = {};
+  currentLoggedUser: any = {};
 
-  constructor(private _incidentService: IncidentService, private loggedUser: LoggedUserService) { }
+  constructor(private _incidentService: IncidentService, private loggedUser: LoggedUserService, private _router: Router) { }
 
   ngOnInit() {  
-    this.retriveLocalStorageObj();
-    this.refreenceEmailid = this.currentUser.email;
+    this.getLoggedUser();
+    this.refreenceEmailid = this.currentLoggedUser.email;
   }
 
   onSubmit(form: NgForm){
-    console.log('form.value', form.value);
-    form.value.userMapId = this.currentUser._id
+    form.value.userMapId = this.currentLoggedUser._id
     this._incidentService.createIncident(form.value).subscribe(
       (res) => { 
         this.incidentList = res;
+        if(this.currentLoggedUser.role === "Admin"){
+          this._router.navigate(['/admin']);
+        }else if(this.currentLoggedUser.role === "Pmo"){
+          this._router.navigate(['/pmo']);
+        }else if(this.currentLoggedUser.role === "User"){
+          this._router.navigate(['/user']);
+        }
        },
       (err) => {
         console.log('Error in create incident');
@@ -43,9 +50,16 @@ export class CreateIncidentComponent implements OnInit {
     )
   }
 
-  retriveLocalStorageObj() {
-    var retrievedObject = localStorage.getItem('loggedInUser');
-    this.currentUser = JSON.parse(retrievedObject);
+  // retriveLocalStorageObj() {
+  //   var retrievedObject = localStorage.getItem('loggedInUser');
+  //   this.currentUser = JSON.parse(retrievedObject);
+  // }
+
+  getLoggedUser() {
+    this.currentLoggedUser = this.loggedUser.getLoginData();
+  }
+  goBackToDashboard(){
+    this._router.navigate(['/dashboard'])
   }
   
 

@@ -28,6 +28,7 @@ export class SingInComponent implements OnInit {
   ngOnInit() {
     //this.userservice.;
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    console.log('returnUrl', this.returnUrl);
   }
   onSubmit(form: NgForm){
     if(form.value.password === "support"){
@@ -37,8 +38,7 @@ export class SingInComponent implements OnInit {
         this.userservice.loginuser(form.value).subscribe(
           res => {
             localStorage.setItem('token', res.token);
-            this.getSelectedUser(form.value);
-            
+            this.getSelectedUser(form.value);            
           },
           err => {
             this.unauthorizedUser = err.error;
@@ -74,9 +74,11 @@ export class SingInComponent implements OnInit {
             if(res.role === "Admin"){
               this._router.navigate(['/admin']);
             }else if(res.role === "Pmo"){
-              this._router.navigate(['/pmo']);
+              //this._router.navigate(['/pmo']);
+              this._router.navigate(['/dashboard']);
             }else if(res.role === "User"){
-              this._router.navigate(['/user']);
+              //this._router.navigate(['/user']);
+              this._router.navigate(['/dashboard']);
             }           
             
           },

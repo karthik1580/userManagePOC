@@ -3,6 +3,7 @@ import { Validators, NgForm } from '@angular/forms';
 import { UserService } from '../../shared/user.service';
 import { Router } from '@angular/router';
 import { User } from '../../models/user.model';
+import { Toster } from 'src/app/models/toster.model';
 
 @Component({
   selector: 'app-reset-password',
@@ -10,8 +11,13 @@ import { User } from '../../models/user.model';
   styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit {
+  
   resetPassword: string = "support";
+  newPasswordValue: string = "";
+  confirmPasswordValue: string = "";
   selectedUser: Array<string> = [];
+  tosermsg: Toster[] = [];
+  showAlertMessage: boolean = false;
   constructor( private userservice: UserService, private _router: Router) { }
 
   ngOnInit() {
@@ -28,7 +34,6 @@ export class ResetPasswordComponent implements OnInit {
       
       return this.userservice.getSelectedByEmail(form.value).subscribe(
         (res) => { 
-          debugger;
           this.selectedUser = res
           this.updatePassword(res, form.value);
         },
@@ -38,15 +43,28 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   updatePassword(updatedRes, newValue){
-    debugger;
-    updatedRes.password = newValue.newPassword;
 
+    updatedRes.password = newValue.newPassword;
     return this.userservice.getUserSelectedById(updatedRes).subscribe(
       (res) => { 
         console.log('res', res);
+        this.showAlertMessage = true;        
+        this.tosermsg.push({title : "Success", message : "Password reset successfully" });
+        this.resetForm();
       },
       (err) => { console.log('Error in create incident', err); }
     )
+  }
+
+   resetForm(){
+     this.resetPassword = "";
+     setTimeout(() => {
+      this.showAlertMessage = false;
+      this._router.navigate(['/signin']);
+     },2000);
+     
+  //   this.newPasswordValue = ""
+  //   this.confirmPasswordValue = ""
   }
 
 }

@@ -4,32 +4,31 @@
       <div class="navbar-brand">PMO Management</div>
     </div>
     <ul class="navbar-nav" style="width:70%">
-      <li><a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
+      <!-- <li><a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li> -->
       <!-- <li><a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a></li>
       <li><a class="nav-link" routerLink="/pmo" routerLinkActive="active">Pmo</a></li>
-      <li><a class="nav-link" routerLink="/user" routerLinkActive="active">User</a></li> -->
-      <li><a class="nav-link" routerLink="/incident" routerLinkActive="active">Create incident</a></li>
+      <li><a class="nav-link" routerLink="/user" routerLinkActive="active">User</a></li>
+      <li><a class="nav-link" routerLink="/incident" routerLinkActive="active">Create incident</a></li> -->
       <!-- <li><a class="nav-link" routerLink="/resetPwd" routerLinkActive="active">Reset password</a></li> -->
     </ul>
     <ul class="nav navbar-nav navbar-right">
       
       <li class="dropdown" *ngIf="user.loggedIn()">
-        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">asasdsa
+        <div *ngIf="loggedUser.getLoginData()">
+        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"  [innerText]="loggedUser.getLoginData().firstName + loggedUser.getLoginData().lastName">
             <b class="caret"></b></a>
         <ul class="dropdown-menu">
             <li>
                 <div class="navbar-content">
-                    <span>JS Krishna</span>
-                    <p class="text-muted small">
-                        me@jskrishna.com
-                    </p>
+                    <span [innerText]="loggedUser.getLoginData().role"></span>
+                    <p class="text-muted small" [innerText]="loggedUser.getLoginData().email"></p>
                     <div class="divider">
                     </div>
-                    <a href="#" class="view btn-sm active">View Profile</a>
                     <a routerLink="/signin" (click)="logout()">Logout</a>
                 </div>
             </li>
         </ul>
+      </div>
     </li>
       <li *ngIf="!user.loggedIn()">
         <a routerLink="/signin" >SignIn</a> / 

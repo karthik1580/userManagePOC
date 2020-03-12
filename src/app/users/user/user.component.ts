@@ -15,6 +15,21 @@ export class UserComponent implements OnInit {
   incidentList: Incident[] = [];
   isIncidentList: boolean = false;
   currentUser: any = {};
+
+
+  gridApi: any;
+  columnApi: any;
+  defaultColDef;
+  rowSelection:string;
+  frameworkComponents: any;
+  columnDefs: Array<any> = [
+    {headerName: "EnterpriseId", field: "enterpriseId" },
+    {headerName: "Name", field: "firstName" },
+    {headerName: "SeatNo", field: "seatNo" },
+    {headerName: "Status", field: "status" },
+    {headerName: "Comments", field: "description" }    
+  ];
+  
   constructor(private userRole: UserRoleService, private incidentService: IncidentService, private userservice:UserService ) { }
 
   ngOnInit() {
@@ -28,7 +43,7 @@ export class UserComponent implements OnInit {
     this.incidentService.getIncidentById(data._id).subscribe(
       res => { 
          this.incidentList = res;
-        // this.isIncidentList = this.incidentList.length > 0 ? true : false;
+         this.isIncidentList = this.incidentList.length > 0 ? true : false;
       },
       err => { 
         console.log('err')

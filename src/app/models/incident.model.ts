@@ -8,10 +8,12 @@ export class Incident {
       lastName: string;
       isVaidUser: boolean;
       createdDate: Date;
-      isOpen: Boolean;
-      isClosed: Boolean;
-      isResolved: Boolean;
-      isClarification: Boolean;
+      status: boolean;
+      isOpen: boolean;
+      isClosed: boolean;
+      isResolved: boolean;
+      isClarification: boolean;
+      isCheckBox: boolean;
 }
 
 // export interface IAgGrid {

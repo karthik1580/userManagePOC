@@ -4,6 +4,7 @@ import { UserService } from '../../shared/user.service';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { User } from '../../models/user.model';
 import { Router } from '@angular/router';
+import { LoggedUserService } from 'src/app/shared/logged-user.service';
 
 @Component({
   selector: 'app-admin',
@@ -15,14 +16,18 @@ export class AdminComponent implements OnInit {
   adminUsersList: boolean;
   isEnablebutton: boolean = true;
   isDiasablebutton: boolean = false;
+  currentLoggedUser: any = {};
   
-  constructor(private userRole: UserRoleService, private _userService: UserService ,private _router: Router ) { }
+  constructor(private userRole: UserRoleService, private _userService: UserService, private _router: Router,private loggedUser: LoggedUserService ) { }
 
   ngOnInit() {
+    this.getLoggedUser();
     this.getUsers();
 
   }
-
+  getLoggedUser() {
+    this.currentLoggedUser = this.loggedUser.getLoginData();
+  }
   getUsers() {
      return this.userRole.getAllUsers().subscribe(
       res => {
@@ -41,7 +46,7 @@ export class AdminComponent implements OnInit {
 
   getCurrentUser(res: any){
     this.registeredUser = [];
-    let currentUser = "5e64ade2ed465612e8f8586b";
+    let currentUser = this.currentLoggedUser._id;
     for(let user of res){
       if(currentUser === user['_id']){
         continue;

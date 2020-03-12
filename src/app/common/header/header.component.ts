@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/user.service';
+import { LoggedUserService } from '../../shared/logged-user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -8,27 +9,27 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  currentUser: any = {};
+  currentLoggedUser: any = {};
 
-  constructor(private user: UserService, private router: Router,) { }
+  constructor(private user: UserService, private loggedUser: LoggedUserService, private router: Router) { }
 
-  ngOnInit() {
-    if(this.currentUser.role === 'Admin')
-      this.router.navigateByUrl('/admin');
-
-    if(this.currentUser.role === 'Pmo')
-      this.router.navigateByUrl('/pmo');
-      
-    if(this.currentUser.role === 'User')
-      this.router.navigateByUrl('/user');
+  ngOnInit() {   
+    this.getLoggedUser();
   }
   logout(){
     localStorage.removeItem('token');
     localStorage.removeItem('loggedInUser');
+    this.currentLoggedUser = {};
   }
 
-  retriveLocalStorageObj() {
-    var retrievedObject = localStorage.getItem('loggedInUser');
-    this.currentUser = JSON.parse(retrievedObject);
+  getLoggedUser() {
+    this.currentLoggedUser = this.loggedUser.getLoginData();
   }
+
+  // retriveLocalStorageObj() {
+  //   var retrievedObject = localStorage.getItem('loggedInUser');
+  //   this.currentUser = JSON.parse(retrievedObject);
+  // }
+
+  
 }

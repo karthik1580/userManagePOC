@@ -30,6 +30,8 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 import { AgGridModule } from 'ag-grid-angular';
 import { CustomAgGridComponent } from './grids/custom-ag-grid/custom-ag-grid.component';
 import { AgGridupdateButtonComponent } from './grids/ag-gridupdate-button.component';
+import { BootgridComponent } from './grids/bootgrid/bootgrid.component';
+import { CustomModalComponent } from './reUsableComponent/custom-modal/custom-modal.component';
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import { AgGridupdateButtonComponent } from './grids/ag-gridupdate-button.compon
     CreateIncidentComponent,
     ResetPasswordComponent,
     CustomAgGridComponent,
-    AgGridupdateButtonComponent
+    AgGridupdateButtonComponent,
+    BootgridComponent,
+    CustomModalComponent
   ],
   imports: [
     BrowserModule,
