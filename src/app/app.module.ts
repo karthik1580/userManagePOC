@@ -32,6 +32,7 @@ import { CustomAgGridComponent } from './grids/custom-ag-grid/custom-ag-grid.com
 import { AgGridupdateButtonComponent } from './grids/ag-gridupdate-button.component';
 import { BootgridComponent } from './grids/bootgrid/bootgrid.component';
 import { CustomModalComponent } from './reUsableComponent/custom-modal/custom-modal.component';
+import { BootstrapgridComponent } from './reUsableComponent/bootstrapgrid/bootstrapgrid.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { CustomModalComponent } from './reUsableComponent/custom-modal/custom-mo
     CustomAgGridComponent,
     AgGridupdateButtonComponent,
     BootgridComponent,
-    CustomModalComponent
+    CustomModalComponent,
+    BootstrapgridComponent
   ],
   imports: [
     BrowserModule,

@@ -37,20 +37,22 @@ export class DashboardComponent implements OnInit {
         debugger;
         //this.getClosedCount(this.incidentList);
         console.log('this.incidentList', this.incidentList);
+        this.getClosedTicketCount(res);
       },
       err => { 
         console.log('err') 
       }
   )}
   
-  // getClosedCount(incidents){
-  //   for(let user of res){
-  //     if(currentUser === user['_id']){
-  //       continue;
-  //     }
-  //     this.registeredUser.push(user);
-  //   }
-  // }
+  
+  getClosedTicketCount(incidents){
+    // for(let user of incidents){
+    //   if(this.currentLoggedUser.status === user['ststus']){
+    //     continue;
+    //   }
+    //   this.registeredUser.push(user);
+    // }
+  }
 
   // getClosedCount(incidents){
   //   for(let count of incidents){

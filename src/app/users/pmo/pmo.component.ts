@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Incident } from '../../models/incident.model';
 import { IncidentService } from '../../shared/incident.service'; 
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, FormArray } from '@angular/forms';
 //import { AgGridupdateButtonComponent } from '../../grids/ag-gridupdate-button.component'
 
 
@@ -19,6 +19,7 @@ export class PmoComponent implements OnInit {
   isIncidentList: boolean = false;
   showCustomModal: boolean = false;
   isRowDataDisable: boolean = false;
+  radioSelected: any;
   workstation: Array<string> = [    
     'Not yet assign',
     'CDC2B.02.191',
@@ -86,29 +87,13 @@ export class PmoComponent implements OnInit {
   //   }
   // ];
   
+  incidentCollectionFroms: FormArray =  this.fb.array([]);
   
 
-  constructor(private incidentService: IncidentService, private _router: Router) { 
-    // // this.defaultColDef = {
-    // //   editable: true,
-    // //   resizable: true
-    // // };   
-    // // this.rowSelection = "single";
-
-    // var gridOptions = {
-    //   onRowClicked: this.RowSelected,
-    //   suppressRowClickSelection: true,
-    //   enableRangeSelection: true,
-    //   enableCellChangeFlash: true,
-    //   rowSelection: 'single',
-    //   rowData: null
-    // };
-    // this.frameworkComponents = {
-    //   updateButtonComponent: AgGridupdateButtonComponent
-    // };
-
-
-  }
+  constructor(
+    private incidentService: IncidentService, 
+    private _router: Router,
+    private fb: FormBuilder) {}
 
   ngOnInit() {
     this.getAllInsidentData();
@@ -124,13 +109,7 @@ export class PmoComponent implements OnInit {
         console.log('err') 
       }
   )}
-  rowSelection111(){
-   // console.log('Hioioioioioioioioioioioioioioioioioio');
-  }
 
-  onBtnClick(){
-    alert('onBtnClick');
-  }
   getIncidentByIdData(id: any) {
     this.incidentService.updateIncident(id).subscribe(
       res => {
@@ -160,16 +139,26 @@ export class PmoComponent implements OnInit {
       created_on: incidentDetail.created_on,
       title: incidentDetail.title,
       issueType: incidentDetail.issueType,
-      description: incidentDetail.description
+      description: incidentDetail.description,
+      
     }    
     this.showCustomModal = true
     this.incidentDetail = detail;
   }
 
-  handleChangeEvent(evt, status){
+  handleChangeEvent(evt, selectedData: boolean){
     //if(evt.target.checked)
-    this.isRowDataDisable = evt.target.checked ? true : false;
-    console.log('evt--------------', evt.target.checked)
+    //this.isRowDataDisable = evt.target.checked ? true : false;
+    //console.log('evt--------------', evt.target.checked)
+    console.log('evt--------------', evt.target.value)
+    console.log('evt--------------', selectedData);
+  }
+  choose(evt, selectedData: boolean){
+    //if(evt.target.checked)
+    //this.isRowDataDisable = evt.target.checked ? true : false;
+    //console.log('evt--------------', evt.target.checked)
+    console.log('choode evt--------------', evt)
+    console.log('evt--------------', selectedData);
   }
   createIncident(){
     this._router.navigate(['/incident'])
@@ -178,7 +167,9 @@ export class PmoComponent implements OnInit {
     this._router.navigate(['/dashboard'])
   }
 
-  onUpdateIncident(){}
+  onUpdateIncident(incident: any){
+
+  }
 
   onOpenItem(incident: any) {
 

@@ -1,0 +1,39 @@
+<!-- <div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-inverse">
+            <tr>
+                <th></th>
+                <th>EnterpriseId</th>
+                <th>Name</th>
+                <th>Seat No</th>
+                <th>Status</th>
+                <th>Comments</th>
+                <th class="actionButton">Action</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="isIncidentList; else noIncidentList">
+          <form *ngFor="let incident of incidentList; let i = index">
+            <tr >
+                <td [innerText]="incident.enterpriseId"></td>
+                <td [innerText]="incident.firstName"></td>
+                <td class="form-group gridSelectOption">
+                  <select class="form-control form-control-sm" [disabled]="!isRowDataDisable" 
+                    formControlName="workstation">
+                    <option *ngFor="let workstation of workstation; let i = index"  [innerHtml]="workstation"></option>
+                  </select>
+                </td>
+                <td class="form-group gridSelectOption">
+                  <select class="form-control form-control-sm" [disabled]="!isRowDataDisable" 
+                  formControlName="workstation">
+                    <option *ngFor="let status of ticketStatus; let i = index"  [innerHtml]="status"></option>
+                  </select>
+                </td>
+                <td class="gridDiscription" [innerText]="incident.description"></td>
+                <td class="actionButton">
+                  <button class="btn btn-outline-primary btn-sm">Update</button>&nbsp;
+                  <button class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#myModal" (click)="getIncidentDetail(incident)">Detail</button>
+                  <!-- <button class="btn btn-outline-danger btn-sm">Delete</button> -->
+                </td>
+            </tr>
+          </form>
+        </tbody>  -->

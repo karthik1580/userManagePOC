@@ -98,12 +98,8 @@ export class SignupComponent implements OnInit {
       this.roleSelection();
     }
 
-    //if(this.registeredUser){
-      //console.log('this.registeredUser &&&&&&&&&&&&&&&&&&&&&&&&',  this.registeredUser);
-      //debugger;
-
-      //form.value.isVaidUser = this.registeredUser.length == 0 ? true : false;
     form.value.isVaidUser = this.isVaidUser;
+    
 
     
   }
@@ -111,6 +107,7 @@ export class SignupComponent implements OnInit {
   saveFormData(form){    
     this.isVaidUser = this.registeredUser.length == 0 ? true : false;
     form.value.isVaidUser = this.isVaidUser;
+    form.value.status = 'open';
     this.userservice.saveUser(form.value).subscribe(
       (res) => {        
         //localStorage.setItem('token', res.token);

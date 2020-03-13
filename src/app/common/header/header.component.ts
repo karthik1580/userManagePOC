@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   currentLoggedUser: any = {};
+  ddLoginLogout: boolean = false;
 
   constructor(private user: UserService, private loggedUser: LoggedUserService, private router: Router) { }
 
@@ -21,7 +22,9 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('loggedInUser');
     this.currentLoggedUser = {};
   }
-
+  headerDD(){
+    //this.ddLoginLogout = !this.ddLoginLogout;
+  }
   getLoggedUser() {
     this.currentLoggedUser = this.loggedUser.getLoginData();
   }

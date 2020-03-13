@@ -10,7 +10,6 @@
         <button class="btn btn btn-outline-primary btn-md" (click)="backToDashboard()">Dashboard</button>
       </div>
     </div>
-  
     <div class="table-responsive">
       <table class="table table-striped">
           <thead class="thead-inverse">
@@ -25,26 +24,19 @@
               </tr>
           </thead>
           <tbody *ngIf="isIncidentList; else noIncidentList">
-              <tr *ngFor="let incident of incidentList; let i = index">
-                  <td>
-
-                    <div class="custom-control custom-checkbox">
-                      <input type="radio" class="custom-control-input" id="customRadio{{i}}" 
-                      name="customRadio"
-                      (change)="handleChangeEvent($event)">
-                      <label class="custom-control-label" for="customRadio{{i}}" ></label>
-                    </div>
-
-                  </td>
+            <form *ngFor="let incident of incidentList; let i = index">
+              <tr >
                   <td [innerText]="incident.enterpriseId"></td>
                   <td [innerText]="incident.firstName"></td>
                   <td class="form-group gridSelectOption">
-                    <select class="form-control form-control-sm" [disabled]="!isRowDataDisable">
+                    <select class="form-control form-control-sm" [disabled]="!isRowDataDisable" 
+                      formControlName="workstation">
                       <option *ngFor="let workstation of workstation; let i = index"  [innerHtml]="workstation"></option>
                     </select>
                   </td>
                   <td class="form-group gridSelectOption">
-                    <select class="form-control form-control-sm">
+                    <select class="form-control form-control-sm" [disabled]="!isRowDataDisable" 
+                    formControlName="workstation">
                       <option *ngFor="let status of ticketStatus; let i = index"  [innerHtml]="status"></option>
                     </select>
                   </td>
@@ -55,31 +47,12 @@
                     <!-- <button class="btn btn-outline-danger btn-sm">Delete</button> -->
                   </td>
               </tr>
-          </tbody>                
-      </table>
-  </div>
+            </form>
+          </tbody> 
   <ng-template #noIncidentList>
     <h5 class="text-center ptb21" [innerHtml]="'No records found'"></h5>
   </ng-template>
 
   <app-custom-modal *ngIf="showCustomModal" id="myModal" [selectedIncident]="incidentDetail" class="modal fade" role="dialog"></app-custom-modal>
 
-    <!-- <div id="myModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Modal Header</h4>
-          </div>
-          <div class="modal-body">
-            <p>Some text in the modal.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-    
-      </div>
-    </div> -->
 </div>

@@ -7,4 +7,6 @@ export class User {
     email: string;
     password: string;    
     newPassword?: string;    
+    status?: string; 
+    updateDate?: Date;   
 }
