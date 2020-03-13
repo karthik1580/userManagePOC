@@ -3,6 +3,7 @@ import { Incident } from '../../models/incident.model';
 import { IncidentService } from '../../shared/incident.service'; 
 import { Router } from '@angular/router';
 import { NgForm, FormBuilder, FormArray } from '@angular/forms';
+import * as _ from 'lodash';
 //import { AgGridupdateButtonComponent } from '../../grids/ag-gridupdate-button.component'
 
 
@@ -15,12 +16,16 @@ import { NgForm, FormBuilder, FormArray } from '@angular/forms';
 export class PmoComponent implements OnInit {
   incidentList: Incident[] = [];
   selectedIncident: Incident[] = [];
+  myTicketsArray: Incident[] = [];
   incidentDetail: any = {};
   isIncidentList: boolean = false;
   showCustomModal: boolean = false;
-  isRowDataDisable: boolean = false;
+  viewMyTickets: boolean = false;
+  hideme: boolean = true;
+  // isSelectWorkstation: boolean = true;
+  isSelectTicketStatus: string;
   radioSelected: any;
-  workstation: Array<string> = [    
+  workstations: Array<string> = [    
     'Not yet assign',
     'CDC2B.02.191',
     'CDC2B.02.192',
@@ -36,64 +41,17 @@ export class PmoComponent implements OnInit {
 
   ticketStatus: Array<string> = [    
     'Open',
+    'Closed',
     'In Progress',
     'Clarification Required',
     'Clarification Received',
     'Resolved',
     'Rejected'
   ];
-
-  // gridApi: any;
-  // columnApi: any;
-  // defaultColDef;
-  // rowSelection:string;
-  // frameworkComponents: any;
-  // columnDefs: Array<any> = [
-  //   {headerName: "EnterpriseId", field: "enterpriseId" },
-  //   {headerName: "Name", field: "firstName" },
-  //   {headerName: "SeatNo", field: "seatNo",
-  //   cellEditor: "agSelectCellEditor",
-  //   cellEditorParams: {
-  //     cellHeight: 50,
-  //     values: this.workstation
-  //   }},
-  //   {headerName: "Status", field: "status",
-  //     cellEditor: "agSelectCellEditor",
-  //     cellEditorParams: {
-  //       cellHeight: 50,
-  //       values: [
-  //       'Open',
-  //       'In Progress',
-  //       'Clarification Required',
-  //       'Clarification Received',
-  //       'Resolved',
-  //       'Rejected']
-  //     }
-  //   },
-  //   {headerName: "Comments", field: "description" },
-  //   {headerName: 'One', field: 'fieldName',
-  //     editable: false,
-  //     cellRenderer : function(params){
-  //         return '<button (click)="rowSelection111(params)">Update</button>'
-  //     }
-  //   },
-  //   {
-  //     headerName: "Child/Parent",
-  //     field: "value",
-  //     editable: false,
-  //     cellRenderer: "updateButtonComponent",
-  //     colId: "params",
-  //     width: 180
-  //   }
-  // ];
   
-  incidentCollectionFroms: FormArray =  this.fb.array([]);
-  
-
   constructor(
-    private incidentService: IncidentService, 
-    private _router: Router,
-    private fb: FormBuilder) {}
+    private incidentService: IncidentService,
+    private _router: Router) {}
 
   ngOnInit() {
     this.getAllInsidentData();
@@ -101,9 +59,10 @@ export class PmoComponent implements OnInit {
 
   getAllInsidentData() {
     this.incidentService.getAllInsident().subscribe(
-      res => { 
+      res => {
         this.incidentList = res;
         this.isIncidentList = this.incidentList.length > 0 ? true : false;
+        this.viewMyTickets = false;
       },
       err => { 
         console.log('err') 
@@ -119,13 +78,13 @@ export class PmoComponent implements OnInit {
     );
   }
 
-  onAssignWorkstation(selectedUser: any) {
-    this.getIncidentByIdData(selectedUser._id); 
+  // onAssignWorkstation(selectedUser: any) {
+  //   this.getIncidentByIdData(selectedUser._id); 
     
-    if(this.selectedIncident && this.selectedIncident){
-      this.onCloseItem()
-    }
-  }
+  //   if(this.selectedIncident && this.selectedIncident){
+  //     this.onCloseItem()
+  //   }
+  // }
   getIncidentDetail(incidentDetail){    
     let detail = {
       email: incidentDetail.email,
@@ -139,62 +98,61 @@ export class PmoComponent implements OnInit {
       created_on: incidentDetail.created_on,
       title: incidentDetail.title,
       issueType: incidentDetail.issueType,
-      description: incidentDetail.description,
-      
+      description: incidentDetail.description      
     }    
     this.showCustomModal = true
     this.incidentDetail = detail;
-  }
+  } 
+  
+  updateIncidentDetail(incident, workstation, ticketStatus){
+    incident.status = ticketStatus.value;
+    incident.workstation = workstation.value;
+    incident.update_on = new Date();
+    return this.incidentService.updateSelectedUserById(incident).subscribe(
+      (res) => { 
+        console.log('res', res);
+      },
+      (err) => { console.log('Error in create incident', err); }
+    )
 
-  handleChangeEvent(evt, selectedData: boolean){
-    //if(evt.target.checked)
-    //this.isRowDataDisable = evt.target.checked ? true : false;
-    //console.log('evt--------------', evt.target.checked)
-    console.log('evt--------------', evt.target.value)
-    console.log('evt--------------', selectedData);
-  }
-  choose(evt, selectedData: boolean){
-    //if(evt.target.checked)
-    //this.isRowDataDisable = evt.target.checked ? true : false;
-    //console.log('evt--------------', evt.target.checked)
-    console.log('choode evt--------------', evt)
-    console.log('evt--------------', selectedData);
   }
   createIncident(){
-    this._router.navigate(['/incident'])
+    this._router.navigate(['/incident']);    
   }
   backToDashboard(){
-    this._router.navigate(['/dashboard'])
+    this._router.navigate(['/dashboard']);
+    this.viewMyTickets = false;
   }
 
   onUpdateIncident(incident: any){
 
   }
 
-  onOpenItem(incident: any) {
-
-  }
-  onProgressItem() {}
-  onCloseItem() {}
-  onResolvedItem() {}
-  onRejectedItem() {}
-  onClarificationRequired() {}
-  onClarificationReceived() {}
-
-  // onGridReady(params){
-  //   this.gridApi = params.api;
-  //   this.columnApi = params.columnApi;    
+  // showSelectWorkstation(index: number, isSelectWorkstation) {
+  //   //this.isSelectWorkstation = false;
   // }
-//   RowSelected(event){
-//     console.log("Hiiiiiiiiiiiiiiiiiiiii");
-//     if(event.node.isSelected()){
-//       console.log("deselected");
-//       event.node.setSelected(false, false);
-//     } else {
-//       event.node.setSelected(true);
-//       console.log("selected, add");
-//     }
-    
-// }
+  // showSelectTicketStatus(index: number, isSelectTicketStatus) {
+  //   this.isSelectTicketStatus = false;
+  // }
+  viewAllIncident() {
+    this.getAllInsidentData();
+    this.viewMyTickets = false;
+  }
+  viewMyIncident(incident) {
+    // this.myTicketsArray = []
+    // this.viewMyTickets = true;
+    // let myTickets = _.filter(incident, ['role', 'Pmo']);
+    // this.myTicketsArray.push(myTickets);
+
+    this.incidentService.updateIncident(incident).subscribe(
+      res => {
+        this.selectedIncident = res;
+      },
+      err => console.log('err') 
+    );
+  }
+
+  
+  
 
 }

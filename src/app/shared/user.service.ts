@@ -46,29 +46,6 @@ export class UserService {
   getUserDetails(id: any): Observable<any>{
     return this.http.get<any>(environment.apiBaseUrl+'/login/'+ id);
   }
-  // resetPassword(){
-  //   this.enableResetButton = true;
-  // }
-  // getSelectedUser(id: any){
-  //   return this.http.get<any>(environment.apiBaseUrl+'/user/'+id);
-  // }
-  // // getSelectedEmail(emailId: any){
-  // //   console.log('emailId', emailId);
-  // //   return this.http.put<any>(environment.apiBaseUrl+'/resetPwd/'+emailId);
-  // //   //return this.selectedByEmailId = emailId;
-  // // }
-  // getSelectedUserById(id: any){
-  //   return this.http.get<any>(environment.apiBaseUrl+'/resetPwd/'+id)
-  // }
-
-  // resetNewPassword(formValue: User){
-  //   let resetObj = {
-  //     newPassword : formValue.newPassword,
-  //     selectedEmail : this.selectedByEmailId
-  //   }
-  //   return this.http.put<any>(environment.apiBaseUrl+'/resetPwd', resetObj);
-  // }
-
   getSelectedByEmail(reqObj: any){
     return this.http.get<any>(environment.apiBaseUrl+'/resetPass/'+ reqObj.email);
   }

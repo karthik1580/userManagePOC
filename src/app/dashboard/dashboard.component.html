@@ -4,7 +4,7 @@
     
     <div class="col-md-6 offset-md-6" style="text-align: right;">
         <button class="btn btn btn-outline-info btn-md">View My incident</button>&nbsp;
-        <button class="btn btn btn-outline-secondary btn-md">View all incident</button> &nbsp;
+        <button class="btn btn btn-outline-secondary btn-md" (click)="viewAllIncident()">View all incident</button> &nbsp;
       <button class="btn btn btn-outline-primary btn-md" (click)="createIncident()">Create incident</button>
     </div>
   </div>
@@ -17,7 +17,7 @@
                     <i class="fa fa-user fa-4x"></i>
                 </div>
                 <h6 class="text-uppercase">Closed</h6>
-                <h1 class="display-4">134</h1>
+                <h1 class="display-4" [innerText]="closedCountArray[0].length"></h1>
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
                     <i class="fa fa-list fa-4x"></i>
                 </div>
                 <h6 class="text-uppercase">Open</h6>
-                <h1 class="display-4">87</h1>
+                <h1 class="display-4" [innerText]="openCountArray[0].length"></h1>
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@
                     <i class="fa fa-twitter fa-4x"></i>
                 </div>
                 <h6 class="text-uppercase">Inprogress</h6>
-                <h1 class="display-4">125</h1>
+                <h1 class="display-4" [innerText]="inprogressCountArray[0].length"></h1>
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
                     <i class="fa fa-share fa-4x"></i>
                 </div>
                 <h6 class="text-uppercase">Rejected</h6>
-                <h1 class="display-4">36</h1>
+                <h1 class="display-4" [innerText]="rejectedCountArray[0].length">36</h1>
             </div>
         </div>
     </div>

@@ -20,11 +20,7 @@ export class ResetPasswordComponent implements OnInit {
   showAlertMessage: boolean = false;
   constructor( private userservice: UserService, private _router: Router) { }
 
-  ngOnInit() {
-    
-    console.log('this.userservice.selectedByEmailId', this.userservice.selectedByEmailId);
-    //this.getSelectedUserDetails();
-  }
+  ngOnInit() {}
 
   onSubmit(form: NgForm){
     

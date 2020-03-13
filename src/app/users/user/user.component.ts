@@ -3,6 +3,7 @@ import { UserRoleService } from '../../shared/user-role.service';
 import { Incident } from '../../models/incident.model';
 import { IncidentService } from '../../shared/incident.service'; 
 import { UserService } from '../../shared/user.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -30,7 +31,11 @@ export class UserComponent implements OnInit {
     {headerName: "Comments", field: "description" }    
   ];
   
-  constructor(private userRole: UserRoleService, private incidentService: IncidentService, private userservice:UserService ) { }
+  constructor(
+    private userRole: UserRoleService, 
+    private incidentService: IncidentService, 
+    private userservice:UserService,
+    private _router: Router ) { }
 
   ngOnInit() {
     this.retriveLocalStorageObj();
@@ -38,8 +43,6 @@ export class UserComponent implements OnInit {
   }
 
   getIncidentByIdData(data: any) {
-    console.log('currentUser', this.currentUser);
-    debugger;
     this.incidentService.getIncidentById(data._id).subscribe(
       res => { 
          this.incidentList = res;
@@ -54,6 +57,10 @@ export class UserComponent implements OnInit {
   retriveLocalStorageObj() {
     var retrievedObject = localStorage.getItem('loggedInUser');
     this.currentUser = JSON.parse(retrievedObject);
+  }
+
+  backToDashboard(){
+    this._router.navigate(['/dashboard']);
   }
   
 

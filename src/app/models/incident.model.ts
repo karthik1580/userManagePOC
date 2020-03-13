@@ -1,4 +1,5 @@
 export class Incident {
+      _id?:string;
       title: string;
       email: string;
       issueType: string;
