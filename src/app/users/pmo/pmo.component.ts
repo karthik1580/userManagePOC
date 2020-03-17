@@ -4,6 +4,7 @@ import { IncidentService } from '../../shared/incident.service';
 import { Router } from '@angular/router';
 import { NgForm, FormBuilder, FormArray } from '@angular/forms';
 import * as _ from 'lodash';
+import { LoggedUserService } from 'src/app/shared/logged-user.service';
 //import { AgGridupdateButtonComponent } from '../../grids/ag-gridupdate-button.component'
 
 
@@ -22,6 +23,9 @@ export class PmoComponent implements OnInit {
   showCustomModal: boolean = false;
   viewMyTickets: boolean = false;
   hideme: boolean = true;
+  isSelectedBox: boolean = false;
+  isOpenSelectbox: any;
+  currentLoggedUser: any = {};
   // isSelectWorkstation: boolean = true;
   isSelectTicketStatus: string;
   radioSelected: any;
@@ -51,6 +55,7 @@ export class PmoComponent implements OnInit {
   
   constructor(
     private incidentService: IncidentService,
+    private loggedUser: LoggedUserService,
     private _router: Router) {}
 
   ngOnInit() {
@@ -94,6 +99,7 @@ export class PmoComponent implements OnInit {
       lastName: incidentDetail.lastName,
       status: incidentDetail.status,
       isOpen: incidentDetail.isOpen,
+      isOpenStatus: incidentDetail.isOpenStatus,
       isResolved: incidentDetail.isResolved,
       isClarification: incidentDetail.isClarification,
       created_on: incidentDetail.created_on,
@@ -105,13 +111,15 @@ export class PmoComponent implements OnInit {
     this.incidentDetail = detail;
   } 
   
-  updateIncidentDetail(incident, workstation, ticketStatus){
-    incident.status = ticketStatus.value;
-    incident.workstation = workstation.value;
+  updateIncidentDetail(incident, workstation, ticketStatus, index){
+    incident.status = ticketStatus;
+    incident.workstation = workstation;
     incident.update_on = new Date();
+    incident.isOpen = false;
+    
     return this.incidentService.updateSelectedUserById(incident).subscribe(
       (res) => { 
-        console.log('res', res);
+        this.getAllInsidentData();  
       },
       (err) => { console.log('Error in create incident', err); }
     )
@@ -128,35 +136,27 @@ export class PmoComponent implements OnInit {
   onUpdateIncident(incident: any){
 
   }
-
-  // showSelectWorkstation(index: number, isSelectWorkstation) {
-  //   //this.isSelectWorkstation = false;
-  // }
-  // showSelectTicketStatus(index: number, isSelectTicketStatus) {
-  //   this.isSelectTicketStatus = false;
-  // }
   viewAllIncident() {
     this.getAllInsidentData();
     this.viewMyTickets = false;
   }
-  viewMyIncident(incident) {
-    // this.myTicketsArray = []
-    // this.viewMyTickets = true;
-    // let myTickets = _.filter(incident, ['role', 'Pmo']);
-    // this.myTicketsArray.push(myTickets);
 
-    this.incidentService.updateIncident(incident).subscribe(
-      res => {
-        this.selectedIncident = res;
+  // checkboxSelectionIncident(seletedIncident) {
+  //   console.log('seletedIncident', seletedIncident);
+  // }
+
+  getMyIncidents() {
+    debugger;
+    this.incidentService.getIncidentById(this.loggedUser.currentUser._id).subscribe(
+      res => { 
+         this.incidentList = res;
+         this.isIncidentList = this.incidentList.length > 0 ? true : false;
       },
-      err => console.log('err') 
-    );
+      err => { 
+        console.log('err')
+      }
+    )
   }
-
-  checkboxSelectionIncident(seletedIncident) {
-    console.log('seletedIncident', seletedIncident);
-  }
-
   
   
 

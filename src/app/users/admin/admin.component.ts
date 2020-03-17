@@ -17,6 +17,8 @@ export class AdminComponent implements OnInit {
   isEnablebutton: boolean = true;
   isDiasablebutton: boolean = false;
   currentLoggedUser: any = {};
+  showCustomModal: boolean = false;
+  userDetail: any = {};
   
   constructor(private userRole: UserRoleService, private _userService: UserService, private _router: Router,private loggedUser: LoggedUserService ) { }
 
@@ -85,6 +87,42 @@ export class AdminComponent implements OnInit {
         }
       }
     )
+  }
+
+  
+  getUserDetail(userDetail){   
+    console.log('userDetail', userDetail); 
+
+//     _id: "5e707c4c2da7272a24395d79"
+// enterpriseId: "adminuser"
+// firstName: "AdminUser"
+// lastName: "123"
+// role: "Admin"
+// email: "admin@gmail.com"
+// password: "1234"
+// isVaidUser: true
+// status: "open"
+// created_on: "2020-03-17T07:29:16.258Z"
+// update_on: "2020-03-17T07:29:16.259Z"
+
+
+    let detail = {
+      email: userDetail.email,
+      enterpriseId: userDetail.enterpriseId,
+      firstName: userDetail.firstName,
+      lastName: userDetail.lastName,
+      status: userDetail.status,
+      isOpen: userDetail.isOpen,
+      isOpenStatus: userDetail.isOpenStatus,
+      isResolved: userDetail.isResolved,
+      isClarification: userDetail.isClarification,
+      created_on: userDetail.created_on,
+      title: userDetail.title,
+      issueType: userDetail.issueType,
+      description: userDetail.description      
+    }    
+    this.showCustomModal = true
+    this.userDetail = detail;
   }
 
 }

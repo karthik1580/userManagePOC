@@ -26,7 +26,7 @@ export class UserComponent implements OnInit {
   columnDefs: Array<any> = [
     {headerName: "EnterpriseId", field: "enterpriseId" },
     {headerName: "Name", field: "firstName" },
-    {headerName: "SeatNo", field: "seatNo" },
+    {headerName: "SeatNo", field: "workstation" },
     {headerName: "Status", field: "status" },
     {headerName: "Comments", field: "description" }    
   ];

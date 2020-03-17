@@ -39,7 +39,7 @@
                     <i class="fa fa-twitter fa-4x"></i>
                 </div>
                 <h6 class="text-uppercase">Inprogress</h6>
-                <h1 class="display-4" [innerText]="dashboardList.inprogress"></h1>
+                <h1 class="display-4" [innerText]="(dashboardList.inprogress + dashboardList.clafRequired)"></h1>
             </div>
         </div>
     </div>
@@ -61,12 +61,11 @@
 
         <div class="card mb-3">
             <div class="card-header">
-                Bye .well, .panel &amp; .thumbnail
+                Sample content
             </div>
             <div class="card-body">
-                <h4 class="card-title">Replaced with .card</h4>
-                <p class="card-text">All of these Bootstrap 3.x components have been dropped entirely for the new card component.</p>
-                <button type="button" class="btn btn-secondary btn-lg">Large</button>
+                <h4 class="card-title">Sample title</h4>
+                <p class="card-text">All of these components have been dropped entirely for the new card component.</p>
             </div>
         </div>
 
@@ -75,7 +74,7 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" href="#home1" role="tab" data-toggle="tab">Home</a>
+                <a class="nav-link active" href="#home1" role="tab" data-toggle="tab">Pie chart</a>
             </li>
             <!-- <li class="nav-item">
                 <a class="nav-link" href="#profile1" role="tab" data-toggle="tab">Profile</a>
@@ -92,7 +91,6 @@
         <div class="tab-content">
             <br>
             <div role="tabpanel" class="tab-pane active" id="home1">
-                <h4>Home</h4>
                 <p id="chart">
                 </p>
             </div>

@@ -34,27 +34,7 @@ export class DashboardComponent implements OnInit, AfterViewInit  {
     this.getLoggedUser();
     this.getAllInsidentData();
   }
-  ngAfterViewInit() {
-    let openValue = 3;
-    let inprogress = 10;
-    let closed = 5;
-    let rejected = 10;
-    let chart = c3.generate({
-    bindto: '#chart',
-        data: {
-            columns: [
-              ['data1', closed],
-              ['data2', openValue],
-              ['data3', inprogress],
-              ['data4', rejected]
-            ],
-            type : 'pie',
-            onclick: function (d, i) { console.log("onclick", d, i); },
-            onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-            onmouseout: function (d, i) { console.log("onmouseout", d, i); }
-        }
-    });
-}
+  ngAfterViewInit() {}
 
   getLoggedUser() {
     this.currentLoggedUser = this.loggedUser.getLoginData();
@@ -138,9 +118,29 @@ export class DashboardComponent implements OnInit, AfterViewInit  {
         resolved: this.resolvedCountArray[0].length,
         rejected: this.rejectedCountArray[0].length
     } 
+    this.onloadPieChart(this.dashboardList)
   }
-
   
+  onloadPieChart(dashboardList){
+    let openValue = dashboardList.open;
+    let inprogress = (dashboardList.inprogress + dashboardList.clafRequired);
+    let closed = dashboardList.closed;
+    let rejected = dashboardList.rejected;
+    
+    let chart = c3.generate({
+    bindto: '#chart',
+        data: {
+            columns: [
+              ['In-Progress', inprogress],
+              ['Rejected Issue', rejected],
+              ['Closed Issues', closed],
+              ['Open Issues', openValue],
+            ],
+            type : 'pie'
+           
+        }
+    });
+  }
 
 
 }

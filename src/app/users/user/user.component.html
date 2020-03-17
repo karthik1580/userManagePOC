@@ -4,8 +4,7 @@
         <h4 class="card-title" [innerText]="currentUser.firstName"></h4>
       </div>
       <div class="col-8" style="text-align: right;">
-          <button class="btn btn btn-outline-info btn-md" (click)="viewMyIncident(incidentList)">View My incident</button>&nbsp;
-          <button class="btn btn btn-outline-secondary btn-md" (click)="viewAllIncident()">View all incident</button> &nbsp;
+          
         <button class="btn btn btn-outline-primary btn-md" (click)="createIncident()">Create incident</button> &nbsp;
         <button class="btn btn btn-outline-primary btn-md" (click)="backToDashboard()">Dashboard</button>
       </div>
@@ -22,7 +21,7 @@
           ></ag-grid-angular>
     </div>
     
-      <div class="row"  *ngIf="isIncidentList; else noIncidentList">
+      <!-- <div class="row"  *ngIf="isIncidentList; else noIncidentList">
         <ul class="list-group coloumnBy2" style="width: 100%;" *ngFor="let incident of incidentList">        
           <li class="list-group-item" >
             <h5 [innerText]="incident.title"></h5>
@@ -33,7 +32,7 @@
               <button class="btn btn btn-outline-primary btn-sm" *ngIf="incident.isOpen && !incident.isResolved" (click)="onOpenItem(incident)">Open</button>
                   <button class="btn btn btn-outline-info btn-sm" *ngIf="!incident.isOpen && !incident.isResolved" (click)="onProgressItem(incident)">In Progress</button>
 
-                  <!-- <button class="btn btn btn-outline-success btn-sm" *ngIf="incident.isResolved && !incident.isOpen && !incident.isClarification" (click)="onCloseItem(incident)">Closed</button> -->
+                  <button class="btn btn btn-outline-success btn-sm" *ngIf="incident.isResolved && !incident.isOpen && !incident.isClarification" (click)="onCloseItem(incident)">Closed</button>
                   <button class="btn btn btn-outline-success btn-sm" *ngIf="incident.isClosed" (click)="onCloseItem(incident)">Closed</button>          
 
                   <button class="btn btn btn-outline-success btn-sm" *ngIf="incident.isResolved" (click)="onResolvedItem(incident)">Resolved</button>
@@ -44,7 +43,7 @@
             </div>
           </li>
         </ul>
-      </div>
+      </div> -->
 
 
 

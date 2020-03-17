@@ -4,7 +4,7 @@
         <h4 class="card-title">PMO</h4>
       </div>
       <div class="col-8" style="text-align: right;">
-          <button class="btn btn btn-outline-info btn-md" (click)="viewMyIncident(incidentList)">View My incident</button>&nbsp;
+          <button class="btn btn btn-outline-info btn-md" (click)="getMyIncidents()">View My incident</button>&nbsp;
           <button class="btn btn btn-outline-secondary btn-md" (click)="viewAllIncident()">View all incident</button> &nbsp;
         <button class="btn btn btn-outline-primary btn-md" (click)="createIncident()">Create incident</button> &nbsp;
         <button class="btn btn btn-outline-primary btn-md" (click)="backToDashboard()">Dashboard</button>
@@ -18,7 +18,7 @@
         <table class="table table-striped">
             <thead class="thead-inverse">
                 <tr>
-                    <th></th>
+                    <!-- <th></th> -->
                     <th>EnterpriseId</th>
                     <th>Name</th>
                     <th>Seat No</th>
@@ -29,26 +29,27 @@
             </thead>
             <tbody *ngIf="isIncidentList; else noIncidentList">
               <tr *ngFor="let incident of incidentList; let i = index">
-                    <td><input type="checkbox" [checked]="isCheckBox" (click)="updateIncident(incident)"></td>
+                    <!-- <td><input type="checkbox" [checked]="isCheckBox" (click)="updateIncident(incident)"></td> -->
                     <td [innerText]="incident.enterpriseId"></td>
                     <td [innerText]="incident.firstName"></td>
                     <td class="form-group gridSelectOption">
-                      <span [innerText]="incident.workstation"></span>
+                      <span [innerText]="incident.workstation" 
+                      *ngIf="incident.isOpen" (click)="incident.isOpen = !incident.isOpen">Select</span>
                       <select class="form-control form-control-sm"
-                      #selectedWorkstation="ngModel" ngModel name="selectedWorkstation">
-                        <option *ngFor="let work of workstations; let i = index" [value]="incident.workstation" [innerText]="work"></option>
+                      #selectedWorkstation="ngModel" ngModel name="selectedWorkstation" *ngIf="!incident.isOpen" [(ngModel)]="incident.workstation">
+                        <option *ngFor="let work of workstations; let i = index" [innerText]="work"></option>
                       </select>
                     </td>
                     <td class="form-group gridSelectOption">
-                      <span [innerText]="incident.status"></span>
+                      <span [innerText]="incident.status" *ngIf="incident.isOpenStatus" (click)="incident.isOpenStatus = !incident.isOpenStatus"></span>
                       <select class="form-control form-control-sm" 
-                      #selectedTicketStatus="ngModel" ngModel name="selectedTicketStatus">
+                      #selectedTicketStatus="ngModel" ngModel name="selectedTicketStatus" *ngIf="!incident.isOpenStatus" [(ngModel)]="incident.status">
                         <option *ngFor="let ts of ticketStatus; let i = index" [innerText]="ts"></option>
                       </select>
                     </td>
                     <td class="gridDiscription" [innerText]="incident.description"></td>
                     <td class="actionButton">
-                      <button class="btn btn-outline-primary btn-sm" (click)="updateIncidentDetail(incident, selectedWorkstation, selectedTicketStatus)">update</button>&nbsp;
+                      <button class="btn btn-outline-primary btn-sm" (click)="updateIncidentDetail(incident, incident.workstation, incident.status, i)">update</button>&nbsp;
                       <button class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#myModal" (click)="getIncidentDetail(incident)">Detail</button>                  
                     </td>
                 </tr>

@@ -11,6 +11,7 @@ export class Incident {
       createdDate: Date;
       status: string;
       isOpen: boolean;
+      isOpenStatus: boolean;
       isClosed: boolean;
       isResolved: boolean;
       isClarification: boolean;

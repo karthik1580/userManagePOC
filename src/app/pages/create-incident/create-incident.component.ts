@@ -61,6 +61,16 @@ export class CreateIncidentComponent implements OnInit {
   goBackToDashboard(){
     this._router.navigate(['/dashboard'])
   }
+
+  ViewAllIncident(){
+    if(this.currentLoggedUser.role === "Admin"){
+      this._router.navigate(['/admin']);
+    }else if(this.currentLoggedUser.role === "Pmo"){
+      this._router.navigate(['/pmo']);
+    }else if(this.currentLoggedUser.role === "User"){
+      this._router.navigate(['/user']);
+    }
+  }
   
 
 }
