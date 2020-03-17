@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { LoggedUserService } from '../shared/logged-user.service';
 import { UserService } from '../shared/user.service';
 import { IncidentService } from '../shared/incident.service';
@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Incident } from '../models/incident.model';
 import { Status } from "../models/ststus.model";
 import * as _ from 'lodash';
+import * as c3 from 'c3';
 
 
 @Component({
@@ -13,10 +14,11 @@ import * as _ from 'lodash';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewInit  {
   currentLoggedUser: any = {};
   incidentList: Array<string> = [];
 
+  dashboardList: any = {};
   openCountArray: Array<string> = [];
   closedCountArray: Array<string> = [];
   inprogressCountArray: Array<string> = [];
@@ -28,9 +30,26 @@ export class DashboardComponent implements OnInit {
   constructor(private user: UserService, private incidentService: IncidentService, private loggedUser: LoggedUserService, private _router: Router) { }
 
   ngOnInit() {
+    this.incidentList = [];
     this.getLoggedUser();
     this.getAllInsidentData();
   }
+  ngAfterViewInit() {
+    let chart = c3.generate({
+    bindto: '#chart',
+        data: {
+            columns: [
+              ['data1', 30],
+              ['data2', 120],
+              ['data2', 120],
+            ],
+            type : 'pie',
+            onclick: function (d, i) { console.log("onclick", d, i); },
+            onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+            onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+        }
+    });
+}
 
   getLoggedUser() {
     this.currentLoggedUser = this.loggedUser.getLoginData();
@@ -41,37 +60,33 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllInsidentData() {
-    if(this.currentLoggedUser.role === "User"){
-      
-      // this.incidentService.getIncidentById(data._id).subscribe(
-      //   res => { 
-      //      this.incidentList = res;
-      //      this.isIncidentList = this.incidentList.length > 0 ? true : false;
-      //   },
-      //   err => { 
-      //     console.log('err')
-      //   }
-      // )
+    if(this.currentLoggedUser != null){
 
-      // this.incidentService.getIncidentById().subscribe(
-      //   res => { 
-      //     this.incidentList = res;
-      //     this.getTicketCount(res);
-      //   },
-      //   err => { 
-      //     console.log('err') 
-      //   }
-      // )
-    }else if(this.currentLoggedUser.role === "Pmo"){
-      this.incidentService.getAllInsident().subscribe(
-        res => { 
-          this.incidentList = res;
-          this.getTicketCount(res);
-        },
-        err => { 
-          console.log('err') 
-        }
-      )
+      if(this.currentLoggedUser.role === "User"){
+        this.incidentService.getIncidentById(this.currentLoggedUser._id).subscribe(
+          res => { 
+            debugger;
+            this.incidentList = res;
+            this.getTicketCount(res);
+          },
+          err => { 
+            console.log('err')
+          }
+        )
+      }else if(this.currentLoggedUser.role === "Pmo"){
+        this.incidentService.getAllInsident().subscribe(
+          res => { 
+            debugger;
+            this.incidentList = res;
+            this.getTicketCount(res);
+          },
+          err => { 
+            console.log('err') 
+          }
+        )
+      }
+    }else{
+      this._router.navigate(['/signin'])
     }
     
 }
@@ -107,7 +122,20 @@ export class DashboardComponent implements OnInit {
 
     let rejectedTickets = _.filter(incidents, ['status', 'Rejected']);
     this.rejectedCountArray.push(rejectedTickets);
+    this.displayIncident()
+  }
 
+  displayIncident(){
+    debugger;
+    this.dashboardList = {
+        open: this.openCountArray[0].length,
+        closed: this.closedCountArray[0].length,
+        inprogress: this.inprogressCountArray[0].length,
+        clafRequired: this.clarificationRequiredCountArray[0].length,
+        clafRecived: this.clarificationReceivedCountArray[0].length,
+        resolved: this.resolvedCountArray[0].length,
+        rejected: this.rejectedCountArray[0].length
+    }    
   }
 
   

@@ -19,11 +19,13 @@
     "@angular/platform-browser": "~8.2.9",
     "@angular/platform-browser-dynamic": "~8.2.9",
     "@angular/router": "~8.2.9",
+    "@types/c3": "^0.7.4",
     "ag-grid": "^18.1.2",
     "ag-grid-angular": "^22.1.1",
     "ag-grid-community": "^22.1.1",
     "angular-ui-grid": "^4.8.3",
     "bootstrap": "^4.4.1",
+    "c3": "^0.7.15",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

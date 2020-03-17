@@ -18,6 +18,7 @@
         <table class="table table-striped">
             <thead class="thead-inverse">
                 <tr>
+                    <th></th>
                     <th>EnterpriseId</th>
                     <th>Name</th>
                     <th>Seat No</th>
@@ -28,6 +29,7 @@
             </thead>
             <tbody *ngIf="isIncidentList; else noIncidentList">
               <tr *ngFor="let incident of incidentList; let i = index">
+                    <td><input type="checkbox" [checked]="isCheckBox" (click)="updateIncident(incident)"></td>
                     <td [innerText]="incident.enterpriseId"></td>
                     <td [innerText]="incident.firstName"></td>
                     <td class="form-group gridSelectOption">

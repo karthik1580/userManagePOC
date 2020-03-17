@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="currentLoggedUser; else noContent">
   
   <div class="row mb-3 mt-3">
     
@@ -17,7 +17,7 @@
                     <i class="fa fa-user fa-4x"></i>
                 </div>
                 <h6 class="text-uppercase">Closed</h6>
-                <h1 class="display-4" [innerText]="closedCountArray[0].length"></h1>
+                <h1 class="display-4" [innerText]="dashboardList.closed"></h1>
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
                     <i class="fa fa-list fa-4x"></i>
                 </div>
                 <h6 class="text-uppercase">Open</h6>
-                <h1 class="display-4" [innerText]="openCountArray[0].length"></h1>
+                <h1 class="display-4" [innerText]="dashboardList.open"></h1>
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@
                     <i class="fa fa-twitter fa-4x"></i>
                 </div>
                 <h6 class="text-uppercase">Inprogress</h6>
-                <h1 class="display-4" [innerText]="inprogressCountArray[0].length"></h1>
+                <h1 class="display-4" [innerText]="dashboardList.inprogress"></h1>
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
                     <i class="fa fa-share fa-4x"></i>
                 </div>
                 <h6 class="text-uppercase">Rejected</h6>
-                <h1 class="display-4" [innerText]="rejectedCountArray[0].length">36</h1>
+                <h1 class="display-4" [innerText]="dashboardList.rejected">36</h1>
             </div>
         </div>
     </div>
@@ -77,7 +77,7 @@
             <li class="nav-item">
                 <a class="nav-link active" href="#home1" role="tab" data-toggle="tab">Home</a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="#profile1" role="tab" data-toggle="tab">Profile</a>
             </li>
             <li class="nav-item">
@@ -85,7 +85,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#settings1" role="tab" data-toggle="tab">Settings</a>
-            </li>
+            </li> -->
         </ul>
 
         <!-- Tab panes -->
@@ -93,14 +93,10 @@
             <br>
             <div role="tabpanel" class="tab-pane active" id="home1">
                 <h4>Home</h4>
-                <p>
-                    1. These Bootstrap 4 Tabs work basically the same as the Bootstrap 3.x tabs.
-                    <br>
-                    <br>
-                    <button class="btn btn-primary-outline btn-lg">Wow</button>
+                <p id="chart">
                 </p>
             </div>
-            <div role="tabpanel" class="tab-pane" id="profile1">
+            <!-- <div role="tabpanel" class="tab-pane" id="profile1">
                 <h4>Pro</h4>
                 <p>
                     2. Tabs are helpful to hide or collapse some addtional content.
@@ -117,10 +113,13 @@
                 <p>
                     4. Some of the Bootstrap 3.x components like well and panel have been dropped for the new card component.
                 </p>
-            </div>
+            </div> -->
         </div>
     </div>
 
   </div>
-
 </div>
+<ng-template #noContent>
+    <h5 class="text-center ptb21" [innerHtml]="'No records found'"></h5>
+</ng-template>
+

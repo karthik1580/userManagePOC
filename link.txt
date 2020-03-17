@@ -75,3 +75,8 @@ https://www.devglan.com/angular/angular-8-crud-example -- crud
 
 
 https://ej2.syncfusion.com/angular/documentation/grid/edit/
+
+
+https://stackoverflow.com/questions/30886203/pie-chart-from-json-using-c3-js
+
+https://www.javaguides.net/2019/06/angular-8-crud-example-tutorial.html

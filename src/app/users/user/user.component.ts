@@ -63,5 +63,8 @@ export class UserComponent implements OnInit {
     this._router.navigate(['/dashboard']);
   }
   
+  createIncident(){
+    this._router.navigate(['/incident']);    
+  }
 
 }

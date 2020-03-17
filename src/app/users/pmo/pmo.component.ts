@@ -77,6 +77,7 @@ export class PmoComponent implements OnInit {
       err => console.log('err') 
     );
   }
+  
 
   // onAssignWorkstation(selectedUser: any) {
   //   this.getIncidentByIdData(selectedUser._id); 
@@ -150,6 +151,10 @@ export class PmoComponent implements OnInit {
       },
       err => console.log('err') 
     );
+  }
+
+  checkboxSelectionIncident(seletedIncident) {
+    console.log('seletedIncident', seletedIncident);
   }
 
   
