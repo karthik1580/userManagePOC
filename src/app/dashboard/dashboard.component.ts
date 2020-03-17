@@ -35,13 +35,18 @@ export class DashboardComponent implements OnInit, AfterViewInit  {
     this.getAllInsidentData();
   }
   ngAfterViewInit() {
+    let openValue = 3;
+    let inprogress = 10;
+    let closed = 5;
+    let rejected = 10;
     let chart = c3.generate({
     bindto: '#chart',
         data: {
             columns: [
-              ['data1', 30],
-              ['data2', 120],
-              ['data2', 120],
+              ['data1', closed],
+              ['data2', openValue],
+              ['data3', inprogress],
+              ['data4', rejected]
             ],
             type : 'pie',
             onclick: function (d, i) { console.log("onclick", d, i); },
@@ -65,7 +70,6 @@ export class DashboardComponent implements OnInit, AfterViewInit  {
       if(this.currentLoggedUser.role === "User"){
         this.incidentService.getIncidentById(this.currentLoggedUser._id).subscribe(
           res => { 
-            debugger;
             this.incidentList = res;
             this.getTicketCount(res);
           },
@@ -76,7 +80,6 @@ export class DashboardComponent implements OnInit, AfterViewInit  {
       }else if(this.currentLoggedUser.role === "Pmo"){
         this.incidentService.getAllInsident().subscribe(
           res => { 
-            debugger;
             this.incidentList = res;
             this.getTicketCount(res);
           },
@@ -126,7 +129,6 @@ export class DashboardComponent implements OnInit, AfterViewInit  {
   }
 
   displayIncident(){
-    debugger;
     this.dashboardList = {
         open: this.openCountArray[0].length,
         closed: this.closedCountArray[0].length,
@@ -135,7 +137,7 @@ export class DashboardComponent implements OnInit, AfterViewInit  {
         clafRecived: this.clarificationReceivedCountArray[0].length,
         resolved: this.resolvedCountArray[0].length,
         rejected: this.rejectedCountArray[0].length
-    }    
+    } 
   }
 
   
