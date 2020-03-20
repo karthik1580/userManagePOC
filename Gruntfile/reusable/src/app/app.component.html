@@ -1,0 +1,94 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<!-- <div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+</div>
+<h2>Here are some links to help you start: </h2>
+<ul>
+  <li>
+    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
+  </li>
+</ul> -->
+<div class="container">
+  <div class="row">
+      <div class="col-md-6 mb-3">
+        <app-input-text-box [_id]="'firstName'" [fieldLabel]="'First Name'" 
+        [ariaLabel]="'First Name'" [required]=true ></app-input-text-box>
+      </div>
+      <div class="col-md-6 mb-3">
+          <app-input-text-box [_id]="'lastName'" [fieldLabel]="'Last Name'" 
+          [ariaLabel]="'Last Name'" [required]=false ></app-input-text-box>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-6 mb-3">
+          <div class="filter-toggle first-filter">
+            <div class="toggle-header">
+              <span id="lbl-quality-heading" aria-label="Recognitions">Recognitions</span>
+                <a class="toggle-icon" #getAllToggleIcon role="link" aria-pressed="false" (keydown)="onKeydown($event)" tabindex="0" aria-label="Press Enter to expand or collapse recognitions filters">
+                  <span class="fa fa-plus"></span>
+                </a>
+            </div>
+          </div>
+          <div class="filter-toggle first-filter">
+            <div class="toggle-header">
+              <span id="lbl-quality-heading" aria-label="Recognitions">Recognitions</span>
+                <a class="toggle-icon" #getAllToggleIcon role="link" aria-pressed="false" (keydown)="onKeydown($event)" tabindex="0" aria-label="Press Enter to expand or collapse recognitions filters">
+                  <span class="fa fa-plus"></span>
+                </a>
+            </div>
+          </div>
+          <div class="filter-toggle first-filter">
+            <div class="toggle-header">
+              <span id="lbl-quality-heading" aria-label="Recognitions">Recognitions</span>
+                <a class="toggle-icon" #getAllToggleIcon role="link" aria-pressed="false" (keydown)="onKeydown($event)" tabindex="0" aria-label="Press Enter to expand or collapse recognitions filters">
+                  <span class="fa fa-plus"></span>
+                </a>
+            </div>
+          </div>
+            
+        <ul class="ant-menu-column">
+																	
+          <!-- Added Locale Filter call for External Link Asset-->
+          <li data-criteria-id="menuItem1439413450105">
+            <a class="ant-menu-item" data-analytics="loginEmployerFlyout" href="https://employer.anthem.com/eea/public/#/login" id="employers-topmenu-1439413450105" target="_blank">Login</a>
+          </li>	
+          <!-- Added Locale Filter call for External Link Asset-->
+          <li data-criteria-id="menuItem1439413454813">
+            <a class="ant-menu-item" data-analytics="registerEmployerFlyout" href="https://employer.anthem.com/eea/public/registration" id="employers-topmenu-1439413454813" target="_blank">Registration</a>
+          </li>	
+          <!-- Added Locale Filter call for External Link Asset-->
+          <li data-criteria-id="menuItem1439413455873">
+            <a class="ant-menu-item" data-analytics="forgotEmployerFlyout" href="https://employer.anthem.com/eea/public/#/forgotPassword" id="employers-topmenu-1439413455873" target="_blank">Forgot Username or Password?</a>
+          </li>	
+          <li data-criteria-id="menuItem1439411826924">
+            <a class="ant-menu-item" data-analytics="findAFormEmpFlyout" href="/employer/forms/" id="employers-topmenu-1439411826924" target="_self">Find a Form</a>
+          </li>	
+          <!-- Added Locale Filter call for External Link Asset-->	
+          <li data-criteria-id="menuItem1439415213267">
+            <a class="ant-menu-item" data-analytics="dentalPrime&CompleteLoginFlyout" href="https://secure.mydentalapps.com/ba/dirServices/applications/ben_privacy_notice.jsp?brandid=10" id="employers-topmenu-1439415213267" target="_blank">Dental Online Services</a>
+          </li>	
+          <!-- Added Locale Filter call for External Link Asset-->		
+          <li data-criteria-id="menuItem1439413700468">
+            <a class="ant-menu-item" data-analytics="easyPayLoginEmpFlyout" href="https://easypay.anthem.com" id="employers-topmenu-1439413700468" target="_blank">EasyPay (CA, CO, NV) </a>
+          </li>	
+          <!-- Added Locale Filter call for External Link Asset-->							
+          <li data-criteria-id="menuItem1439413701911">
+            <a class="ant-menu-item" data-analytics="life&DisabilityLoginEmpFlyout" href="https://compassi.anthem.com/compassi/public/login.jsp" id="employers-topmenu-1439413701911" target="_blank">Life and Disability Online Services (National , OH, IN, MO, KY, WI) </a>
+          </li>	            
+        </ul>
+      </div>
+      <div class="col-md-6 mb-3">
+        <app-input-text-box></app-input-text-box>
+      </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>

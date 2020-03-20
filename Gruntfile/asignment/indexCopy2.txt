@@ -1,0 +1,10 @@
+[‎10/‎14/‎2016 11:55 AM] Cm, Keerthirajan: 
+http://www.infragistics.com/community/blogs/dhananjay_kumar/archive/2015/06/11/understanding-scopes-in-angularjs-custom-directives.aspx 
+https://gist.github.com/exclsr/3595424 
+[‎10/‎14/‎2016 11:56 AM] Cm, Keerthirajan: 
+https://gonzalo123.com/2014/09/08/sharing-scope-between-controllers-with-angularjs/ 
+[‎10/‎14/‎2016 11:58 AM] Cm, Keerthirajan: 
+http://embed.plnkr.co/am6IDw/ 
+http://www.dotnetinterviewquestions.in/article_understand-broadcast-emit-and-events-in-angularjs-using-example_258.html 
+[‎10/‎14/‎2016 11:59 AM] Cm, Keerthirajan: 
+http://www.binaryintellect.net/articles/5d8be0b6-e294-457e-82b0-ba7cc10cae0e.aspx 

@@ -1,0 +1,54 @@
+https://gist.github.com/CMCDragonkai/6282750
+http://henriquat.re/directives/introduction-to-directives/introductionToDirectives.html
+https://www.toptal.com/angular-js/angular-js-demystifying-directives
+http://onehungrymind.com/angularjs-directives-basics/
+http://www.tutorialspoint.com/angularjs/angularjs_custom_directives.htm
+https://www.sitepoint.com/practical-guide-angularjs-directives/
+http://tutorials.jenkov.com/angularjs/custom-directives.html#custom-directive-introduction
+https://angular-ui.github.io/bootstrap/
+http://stackoverflow.com/questions/9746916/can-i-use-another-prefix-instead-of-ng-with-angularjs
+
+
+http://www.newyyz.com/blog/2014/12/15/understanding-priorities-in-angularjs-directive-definition-objects/
+http://jsfiddle.net/codef0rmer/7REAr/
+https://docs.angularjs.org/api/ng/service/$compile
+
+
+Transclusion in Angular
+
+https://egghead.io/lessons/angularjs-transclusion-basics
+http://teropa.info/blog/2015/06/09/transclusion.html
+https://www.accelebrate.com/blog/angularjs-transclusion-part-1/
+https://nulogy.com/who-we-are/company-blog/articles/transclusion-in-angular/
+
+http://www.angularjshub.com/examples/customdirectives/template/
+
+http://tutlane.com/example/angularjs/angularjs-ng-keyup-event-example
+
+
+
+Flicker
+http://codepen.io/CSharpMark/pen/ZYXYXd
+
+http://stackoverflow.com/questions/20720547/cant-use-angular-to-show-json-from-flickr
+
+
+---
+http://www.dwmkerr.com/promises-in-angularjs-the-definitive-guide/
+
+http://jsfiddle.net/dwmkerr/4GjtR/?utm_source=website&utm_medium=embed&utm_campaign=4GjtR
+
+
+https://www.peterbe.com/plog/promises-with-$http   [Important]
+https://dzone.com/articles/convert-xml-to-json-in-angular-js [Important]
+
+http://blog.thoughtram.io/angular/2015/07/07/service-vs-factory-once-and-for-all.html
+http://www.amitavroy.com/justread/content/articles/working-xml-angular-js/
+http://stackoverflow.com/questions/20664311/convert-xml-data-to-json-format-angularjs
+http://stackoverflow.com/questions/19643199/angularjs-using-http-to-obtain-xml-response-rather-than-json/29354714
+http://angularjs.learnwebtutorials.com/angularjs-read-xml-web-service.html  [Important]
+
+https://hello-angularjs.appspot.com/searchtable
+
+
+@DKR2013

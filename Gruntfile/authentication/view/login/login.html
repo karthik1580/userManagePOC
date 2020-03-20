@@ -1,0 +1,17 @@
+<div class="col-xs-offset-3 col-xs-6">
+	<form name="form" role="form">
+		<div class="form-group">
+			<label for="userName">Username</label>
+			<input type="text" name="userName" class="form-control" id="userName" ng-model="userName" required />
+			<span ng-show="form.userName.$dirty && form.userName.$error.required" class="help-block">Username is required</span>
+		</div>
+		<div class="form-group">
+			<label for="userPwd">Password</label>
+			<input type="password" name="userPwd" class="form-control" id="userPwd" ng-model="password" required />
+			<span ng-show="form.userPwd.$dirty && form.userPwd.$error.required" class="help-block">Username is Password</span>
+		</div>
+		<div class="form-actions">
+			<button type="submit" class="btn btn-danger" ng-disabled="form.$invalid">Login</button>
+		</div>
+	</form>
+</div>
