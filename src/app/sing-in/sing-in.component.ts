@@ -25,10 +25,8 @@ export class SingInComponent implements OnInit {
     private route: ActivatedRoute
     ) { }
 
-  ngOnInit() {
-    //this.userservice.;
+  ngOnInit() {    
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-    console.log('returnUrl', this.returnUrl);
   }
   onSubmit(form: NgForm){
     if(form.value.password === "support"){
@@ -36,7 +34,7 @@ export class SingInComponent implements OnInit {
       this._router.navigate(['/resetPwd']);
     }else{
         this.userservice.loginuser(form.value).subscribe(
-          res => {
+          res => {            
             localStorage.setItem('token', res.token);
             this.getSelectedUser(form.value);            
           },

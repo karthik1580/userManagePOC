@@ -13,6 +13,7 @@ export class TokenInterceptorService implements HttpInterceptor {
   constructor( private injector: Injector, private _router: Router) { }
 
   intercept(req:HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
+
     let authSerevice = this.injector.get(UserService)
     let tokenizereq = req.clone({
       setHeaders: {
@@ -22,11 +23,14 @@ export class TokenInterceptorService implements HttpInterceptor {
     });
     return next.handle(tokenizereq).pipe(catchError(this.errorHandler))
     }
-    errorHandler(error: HttpErrorResponse) {
+    errorHandler(error: HttpErrorResponse) {   
+       
+      let authSerevice = this.injector.get(UserService);  
       localStorage.removeItem('token');
       localStorage.removeItem('loggedInUser');
-      this.currentLoggedUser = {};
-      this._router.navigateByUrl('signIn');
+      //localStorage.setItem('token', res.token);
+      //this.currentLoggedUser = {};
+      //this._router.navigate(['/signIn']);
       return throwError("server error");
     }
 }
